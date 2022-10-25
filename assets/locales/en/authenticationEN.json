@@ -1,0 +1,21 @@
+{
+  "signIn": {
+    "form": {
+      "placeholder": {
+        "username": "Phone number, email or username",
+        "password": "Password"
+      }
+    },
+    "forgotDetails": {
+      "question": "Forgot your details ?",
+      "link": "Get help logging in."
+    },
+    "bottom": {
+      "dontHaveAccount": "Don't have an account ?",
+      "signUp": "Sign up."
+    }
+  },
+  "languagePicker": {
+    "header": "SELECT YOUR LANGUAGE"
+  }
+}
