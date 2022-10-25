@@ -17,7 +17,7 @@ const authenticationReducer: Reducer<
       return {
         ...state,
         profile: action.profile,
-        secrets: action.secrets
+        secrets: action.secrets,
       };
     }
 

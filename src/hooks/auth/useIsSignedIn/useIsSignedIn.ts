@@ -13,7 +13,6 @@ const useIsSignedIn = () => {
   return useMemo(() => {
     const isSignedId = Boolean(secrets && profile);
     if (isSignedId && secrets && profile) {
-
       api.setHeaders({
         // ...
       });

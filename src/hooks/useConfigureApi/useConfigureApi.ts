@@ -8,7 +8,6 @@ import api from '../../utils/api/api';
 const PREFIX = '[useConfigureApi]';
 
 export const useConfigureApi = () => {
-
   const queryClient = useQueryClient();
   const dispatch = useDispatch();
 
