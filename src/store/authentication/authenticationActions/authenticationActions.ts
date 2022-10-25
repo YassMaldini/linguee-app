@@ -1,18 +1,11 @@
 import {
-  SetApiStateAction,
-  SetAuthenticationInfosAction,
-  SetDeviceAction,
   SetProfileAction,
   SetSecretsAction,
-  SET_API_STATE,
-  SET_AUTHENTICATION_INFOS,
-  SET_DEVICE,
   SET_PROFILE,
   SET_SECRETS,
   SIGN_OUT,
 } from './authenticationActions.types';
 import { QueryClient } from 'react-query';
-import { HEADERS } from 'apisauce';
 import api from '../../../utils/api/api';
 import { User } from '../../../types/models/user/User.types';
 import { Dispatch } from 'redux';

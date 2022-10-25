@@ -1,11 +1,7 @@
 import { Navigator, Screen } from './ConnectedBottomTab.navigator';
-import { SvgIcon } from '../../designSystem/SvgIcon/SvgIcon';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../utils/theme/theme';
 import HomeStack from '../HomeStack/HomeStack';
-import { useSelector } from 'react-redux';
-import { profileSelector } from '../../../store/authentication/authenticationReducerSelectors';
-import { User } from '../../../types/models/user/User.types';
 
 const ConnectedBottomTab = () => {
   const theme = useTheme<Theme>();
