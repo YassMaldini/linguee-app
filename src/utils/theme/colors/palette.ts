@@ -14,10 +14,13 @@ export const PALETTE = Object.freeze({
   gray0: '#F2F2F2',
   gray1: '#E5E5ED',
   gray2: '#CCCCD8',
-  gray3: '#7D7DA1',
+  gray3: '#555555',
   gray4: '#484869',
-  gray5: '#052546',
+  gray5: '#282828',
 
+  icon: '#555555',
+
+  highlightedText: '#527091',
   highlightBackground: '#262626',
 
   disabledButtonBackground: '#0095F650',

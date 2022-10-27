@@ -7,6 +7,4 @@ export type ImageProps = SpacingProps<Theme> &
   LayoutProps<Theme> &
   BackgroundColorProps<Theme> &
   BorderProps<Theme> &
-  Omit<RNImageProps, 'height' | 'width' | 'borderRadius'> & {
-    hasStory?: boolean;
-  };
+  Omit<RNImageProps, 'height' | 'width' | 'borderRadius'>;

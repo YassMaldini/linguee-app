@@ -4,16 +4,17 @@ import { useConfigureApi } from '../../../hooks/useConfigureApi/useConfigureApi'
 import getRootStackScreens from './getRootStackScreens/getRootStackScreens';
 import { useFonts } from 'expo-font';
 import Text from '../../designSystem/Text/Text';
-import useIsSignedIn from '../../../hooks/auth/useIsSignedIn/useIsSignedIn';
+// import useIsSignedIn from '../../../hooks/auth/useIsSignedIn/useIsSignedIn';s
 
 const RootStack = () => {
   useConfigureApi();
 
-  const isSignedIn = useIsSignedIn();
+  const isSignedIn = true;
 
   const [fontsLoaded] = useFonts({
     'Roboto-Regular': require('../../../../assets/fonts/Roboto/Roboto-Regular.ttf'),
     'Roboto-Bold': require('../../../../assets/fonts/Roboto/Roboto-Bold.ttf'),
+    'Roboto-Italic': require('../../../../assets/fonts/Roboto/Roboto-Italic.ttf'),
   });
 
   const screens = useMemo(() => getRootStackScreens({ isSignedIn }), [isSignedIn]);

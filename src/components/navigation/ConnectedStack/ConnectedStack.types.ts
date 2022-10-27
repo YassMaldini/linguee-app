@@ -3,7 +3,7 @@ import { RootStackParamsList } from '../RootStack/RootStack.types';
 
 export type ConnectedStackParamsList = {
   ConnectedBottomTab: undefined;
-  Home: undefined;
+  HomeScreen: undefined;
 };
 
 export type ConnectedStackScreenProps = NativeStackScreenProps<

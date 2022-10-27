@@ -1,6 +1,7 @@
 import { Reducer } from 'redux';
 import AuthenticationReducerActionsTypes, {
   SET_AUTHENTICATION_INFOS,
+  SET_LANGUAGE_PAIR,
   SET_PROFILE,
   SET_SECRETS,
   SIGN_OUT,
@@ -32,6 +33,13 @@ const authenticationReducer: Reducer<
       return {
         ...state,
         secrets: action.secrets,
+      };
+    }
+
+    case SET_LANGUAGE_PAIR: {
+      return {
+        ...state,
+        languagePair: action.languagePair,
       };
     }
 

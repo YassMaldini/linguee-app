@@ -61,7 +61,13 @@ const TextInput = forwardRef<any, TextInputprops>((rest, ref) => {
     //   }}
     //   {...{ ref }}
     // />
-    <Component paddingHorizontal="m" borderRadius="s" {...rootProps} {...{ ref }} />
+    <Component
+      paddingHorizontal="m"
+      paddingVertical="xs"
+      borderRadius="s"
+      {...rootProps}
+      {...{ ref }}
+    />
   );
 });
 
