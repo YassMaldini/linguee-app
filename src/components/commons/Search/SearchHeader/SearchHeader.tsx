@@ -21,17 +21,18 @@ import { searchHeaderMutation } from './SearchHeader.actions';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import getSearchHeaderSchema from './SearchHeader.schema';
-import { HomeContext } from '../../../screens/connected/HomeScreen/HomeScreen.context';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { USE_SEARCH_QUERY_KEY } from '../../../../hooks/useSearch/useSearch';
 import { useSelector } from 'react-redux';
 import { languagePairSelector } from '../../../../store/authentication/authenticationReducerSelectors';
 import { LanguagePairModal } from '../LanguagePairModal/LanguagePairModal';
+import { HomeStackContext } from '../../../navigation/HomeStack/HomeStack.context';
+import { HomeStackScreenList } from '../../../navigation/HomeStack/HomeStack.types';
 
 const SearchHeader = () => {
   const theme = useTheme<Theme>();
   const textInputRef = useRef<RNTextInput>(null);
-  const { setSearchResponse } = useContext(HomeContext);
+  const { activeScreen, setSearchResponse, navigation } = useContext(HomeStackContext);
   const bottomModalRef = useRef<BottomSheetModal>(null);
   const queryClient = useQueryClient();
   const languagePair = useSelector(languagePairSelector);
@@ -53,7 +54,11 @@ const SearchHeader = () => {
     {
       mutationKey: USE_SEARCH_QUERY_KEY,
       onMutate: () => queryClient.cancelMutations(),
-      onSuccess: async (resp) => setSearchResponse(resp),
+      onSuccess: async (resp) => {
+        if (activeScreen !== HomeStackScreenList.HomeScreen)
+          navigation.navigate(HomeStackScreenList.HomeScreen);
+        setSearchResponse(resp);
+      },
       onError: async (error) => console.log('error', error.message),
     }
   );

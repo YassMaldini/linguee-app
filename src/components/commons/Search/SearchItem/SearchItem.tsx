@@ -1,13 +1,24 @@
-import { SearchResponseObject } from '../../../types/models/search/search.types';
-import Box from '../../designSystem/Box/Box';
-import Chip from '../../designSystem/Chip/Chip';
-import { ChipColors } from '../../designSystem/Chip/Chip.types';
-import Pressable from '../../designSystem/Pressable/Pressable';
-import Text from '../../designSystem/Text/Text';
+import { useNavigation } from '@react-navigation/native';
+import { SearchResponseObject } from '../../../../types/models/search/search.types';
+import Box from '../../../designSystem/Box/Box';
+import Chip from '../../../designSystem/Chip/Chip';
+import { ChipColors } from '../../../designSystem/Chip/Chip.types';
+import Pressable from '../../../designSystem/Pressable/Pressable';
+import Text from '../../../designSystem/Text/Text';
+import { HomeStackScreenList } from '../../../navigation/HomeStack/HomeStack.types';
+import { HomeScreenProps } from '../../../screens/connected/HomeScreen/HomeScreen.types';
 
-const WordItem = (item: SearchResponseObject) => {
+const SearchItem = (item: SearchResponseObject) => {
+  const { navigate } = useNavigation<HomeScreenProps['navigation']>();
   return (
-    <Pressable paddingHorizontal="m">
+    <Pressable
+      paddingHorizontal="m"
+      onPress={() => {
+        navigate(HomeStackScreenList.TranslationScreen, {
+          url: item.mainItem.href,
+          wt: item.mainItem.wt,
+        });
+      }}>
       <Box
         flexDirection="row"
         alignItems="center"
@@ -54,4 +65,4 @@ const WordItem = (item: SearchResponseObject) => {
   );
 };
 
-export default WordItem;
+export default SearchItem;

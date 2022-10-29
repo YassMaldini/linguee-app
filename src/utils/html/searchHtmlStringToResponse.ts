@@ -2,7 +2,7 @@ import parse from 'node-html-parser';
 import { SearchResponse } from '../../types/models/search/search.types';
 import { decodeHTMLEntities } from './decodeHTMLEntities';
 
-export const htmlStringToResponse = (html: string): SearchResponse => {
+export const searchHtmlStringToResponse = (html: string): SearchResponse => {
   const response: SearchResponse = [];
 
   // remove "·" from html string to parse more easily
@@ -16,6 +16,8 @@ export const htmlStringToResponse = (html: string): SearchResponse => {
     const main_item = item.querySelector('.main_item')?.innerText.replace(/(\r\n|\n|\r)/gm, '');
     const main_item_lid = item.querySelector('.main_item')?.getAttribute('lid');
     const main_item_lc = item.querySelector('.main_item')?.getAttribute('lc');
+    const main_item_href = item.querySelector('.main_item')?.getAttribute('href');
+    const main_item_wt = item.querySelector('.main_wordtype')?.getAttribute('wt');
 
     const translation_items_list = item.querySelectorAll('.translation_item');
     const translation_items_words = [];
@@ -34,6 +36,8 @@ export const htmlStringToResponse = (html: string): SearchResponse => {
     response.push({
       mainItem: {
         text: decodeHTMLEntities(main_item || ''),
+        href: main_item_href || '',
+        wt: main_item_wt ? parseInt(main_item_wt) : undefined,
         lid: main_item_lid,
         lc: main_item_lc,
       },

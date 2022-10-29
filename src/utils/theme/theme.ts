@@ -51,7 +51,7 @@ const getTheme = () =>
         fontFamily: 'Roboto-Regular',
       },
       title: {
-        fontWeight: 800,
+        fontWeight: '800',
       },
     },
   });

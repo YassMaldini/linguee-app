@@ -7,6 +7,8 @@ export interface SearchResponseObject {
 
 export interface SearchResponseMainItem {
   text: string;
+  href: string;
+  wt?: number;
   lid?: string;
   lc?: string;
 }

@@ -1,32 +1,41 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useContext, useEffect } from 'react';
 import Box from '../../../designSystem/Box/Box';
-import WordItem from '../../../commons/WordItem/WordItem';
-import SearchHeader from '../../../commons/Search/SearchHeader/SearchHeader';
-import { HomeContext } from './HomeScreen.context';
-import { HomeScreenContextProps } from './HomeScreen.types';
-import { SearchResponse } from '../../../../types/models/search/search.types';
-import { FlashList } from '@shopify/flash-list';
+import SearchItem from '../../../commons/Search/SearchItem/SearchItem';
+import { SearchResponseObject } from '../../../../types/models/search/search.types';
+import { FlashList, ListRenderItem } from '@shopify/flash-list';
+import { HomeStackContext } from '../../../navigation/HomeStack/HomeStack.context';
+import { useNavigation } from '@react-navigation/native';
+import { TranslationScreenProps } from '../TranslationScreen/TranslationScreen.types';
+import { HomeStackScreenList } from '../../../navigation/HomeStack/HomeStack.types';
 
 const HomeScreen = () => {
-  const [searchResponse, setSearchResponse] = useState<SearchResponse>();
+  const { setActiveScreen } = useContext(HomeStackContext);
+  const navigation = useNavigation<TranslationScreenProps['navigation']>();
 
-  const contextValue = useMemo<HomeScreenContextProps>(
-    () => ({ searchResponse, setSearchResponse }),
-    [searchResponse, setSearchResponse]
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      setActiveScreen(HomeStackScreenList.HomeScreen);
+    });
+
+    return unsubscribe;
+  }, [navigation]);
+
+  const { searchResponse } = useContext(HomeStackContext);
+
+  const renderItem = useCallback<ListRenderItem<SearchResponseObject>>(
+    ({ item }) => <SearchItem {...item} />,
+    [searchResponse]
   );
 
   return (
-    <HomeContext.Provider value={contextValue}>
-      <Box flex={1}>
-        <SearchHeader />
-        <FlashList
-          data={searchResponse}
-          renderItem={({ item }) => <WordItem {...item} />}
-          estimatedItemSize={20}
-          keyboardDismissMode="on-drag"
-        />
-      </Box>
-    </HomeContext.Provider>
+    <Box flex={1}>
+      <FlashList
+        data={searchResponse}
+        {...{ renderItem }}
+        estimatedItemSize={20}
+        keyboardDismissMode="on-drag"
+      />
+    </Box>
   );
 };
 

@@ -1,7 +1,7 @@
 import api from '../../utils/api/api';
 import { QuerySearchOptions } from './useSearch.types';
-import { htmlStringToResponse } from '../../utils/html/htmlStringToResponse';
 import { LanguagePairEndpoints } from '../../utils/api/languages/languagePairEndpoints';
+import { searchHtmlStringToResponse } from '../../utils/html/searchHtmlStringToResponse';
 
 const PREFIX = '[querySearch]';
 
@@ -37,5 +37,5 @@ export const querySearch = async ({ languagePair, options }: QuerySearchOptions)
   }
 
   console.log(PREFIX, `Received search page.`);
-  return htmlStringToResponse(data as string);
+  return searchHtmlStringToResponse(data as string);
 };
