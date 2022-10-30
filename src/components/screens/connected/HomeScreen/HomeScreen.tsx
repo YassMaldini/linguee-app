@@ -7,6 +7,7 @@ import { HomeStackContext } from '../../../navigation/HomeStack/HomeStack.contex
 import { useNavigation } from '@react-navigation/native';
 import { TranslationScreenProps } from '../TranslationScreen/TranslationScreen.types';
 import { HomeStackScreenList } from '../../../navigation/HomeStack/HomeStack.types';
+import HomeCarousel from './HomeCarousel/HomeCarousel';
 
 const HomeScreen = () => {
   const { setActiveScreen } = useContext(HomeStackContext);
@@ -32,6 +33,7 @@ const HomeScreen = () => {
       <FlashList
         data={searchResponse}
         {...{ renderItem }}
+        ListEmptyComponent={<HomeCarousel />}
         estimatedItemSize={20}
         keyboardDismissMode="on-drag"
       />

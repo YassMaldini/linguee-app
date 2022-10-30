@@ -14,8 +14,8 @@ const getTheme = () =>
       mToL: 20,
       l: 24,
       xl: 48,
-      xxl: 86,
-      xxxl: 112,
+      xxl: 96,
+      xxxl: 160,
     },
     layout: {
       none: 0,
