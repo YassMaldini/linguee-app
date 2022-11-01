@@ -4,7 +4,7 @@ import {
   HomeStackScreenList,
 } from '../../../navigation/HomeStack/HomeStack.types';
 
-export type HomeScreenProps = NativeStackScreenProps<
+export type HistoryTranslationScreenProps = NativeStackScreenProps<
   HomeStackParamsList,
-  HomeStackScreenList.HomeScreen
+  HomeStackScreenList.HistoryTranslationScreen
 >;

@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react';
 import { SearchResponse } from '../../../types/models/search/search.types';
 import BottomTab from '../../commons/BottomTab/BottomTab';
 import SearchHeader from '../../commons/Search/SearchHeader/SearchHeader';
+import HistoryTranslationScreen from '../../screens/connected/HistoryTranslationScreen/HistoryTranslationScreen';
 import HomeScreen from '../../screens/connected/HomeScreen/HomeScreen';
 import TranslationScreen from '../../screens/connected/TranslationScreen/TranslationScreen';
 import { HomeStackContext } from './HomeStack.context';
@@ -16,10 +17,27 @@ const HomeStack = () => {
     HomeStackScreenList.HomeScreen
   );
   const [searchResponse, setSearchResponse] = useState<SearchResponse>();
+  const [currentHistoryIndex, setCurrentHistoryIndex] = useState<number>(0);
 
   const contextValue = useMemo<HomeStackContextProps>(
-    () => ({ activeScreen, setActiveScreen, searchResponse, setSearchResponse, navigation }),
-    [activeScreen, setActiveScreen, searchResponse, setSearchResponse, navigation]
+    () => ({
+      activeScreen,
+      setActiveScreen,
+      searchResponse,
+      setSearchResponse,
+      currentHistoryIndex,
+      setCurrentHistoryIndex,
+      navigation,
+    }),
+    [
+      activeScreen,
+      setActiveScreen,
+      searchResponse,
+      setSearchResponse,
+      currentHistoryIndex,
+      setCurrentHistoryIndex,
+      navigation,
+    ]
   );
 
   return (
@@ -32,6 +50,10 @@ const HomeStack = () => {
         }}>
         <Screen name={HomeStackScreenList.HomeScreen} component={HomeScreen} />
         <Screen name={HomeStackScreenList.TranslationScreen} component={TranslationScreen} />
+        <Screen
+          name={HomeStackScreenList.HistoryTranslationScreen}
+          component={HistoryTranslationScreen}
+        />
       </Navigator>
       <BottomTab />
     </HomeStackContext.Provider>

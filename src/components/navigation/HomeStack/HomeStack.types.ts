@@ -5,11 +5,13 @@ import { SearchResponse } from '../../../types/models/search/search.types';
 export type HomeStackParamsList = {
   [HomeStackScreenList.HomeScreen]: undefined;
   [HomeStackScreenList.TranslationScreen]: { url: string; wt?: number };
+  [HomeStackScreenList.HistoryTranslationScreen]: undefined;
 };
 
 export enum HomeStackScreenList {
   HomeScreen = 'HomeScreen',
   TranslationScreen = 'TranslationScreen',
+  HistoryTranslationScreen = 'HistoryTranslationScreen',
 }
 
 export type HomeStackProps = NativeStackScreenProps<HomeStackParamsList, HomeStackScreenList>;
@@ -19,5 +21,7 @@ export interface HomeStackContextProps {
   setSearchResponse: Dispatch<SetStateAction<SearchResponse | undefined>>;
   activeScreen: HomeStackScreenList;
   setActiveScreen: Dispatch<SetStateAction<HomeStackScreenList>>;
+  currentHistoryIndex: number;
+  setCurrentHistoryIndex: Dispatch<SetStateAction<number>>;
   navigation: NativeStackNavigationProp<HomeStackParamsList>;
 }

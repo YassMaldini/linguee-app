@@ -8,8 +8,46 @@ import SettingsIcon from '../../../../assets/images/ic_settings_black_36dp.png';
 import ShareIcon from '../../../../assets/vectors/share.svg';
 import { SvgIcon } from '../../designSystem/SvgIcon/SvgIcon';
 import Pressable from '../../designSystem/Pressable/Pressable';
+import { useCallback, useContext } from 'react';
+import { HomeStackContext } from '../../navigation/HomeStack/HomeStack.context';
+import { HomeStackScreenList } from '../../navigation/HomeStack/HomeStack.types';
+import { useSelector } from 'react-redux';
+import { savedTranslationsSelector } from '../../../store/translation/translationReducerSelectors';
 
 const BottomTab = () => {
+  const { navigation, activeScreen, currentHistoryIndex, setCurrentHistoryIndex } =
+    useContext(HomeStackContext);
+
+  const savedTranslations = useSelector(savedTranslationsSelector);
+
+  const onPressLeftArrow = useCallback(() => {
+    if (activeScreen !== HomeStackScreenList.HistoryTranslationScreen) {
+      navigation.navigate(HomeStackScreenList.HistoryTranslationScreen);
+    }
+    if (currentHistoryIndex > 0) {
+      setCurrentHistoryIndex(currentHistoryIndex - 1);
+    } else {
+      setCurrentHistoryIndex(0);
+    }
+  }, [navigation, activeScreen, savedTranslations, currentHistoryIndex]);
+
+  const onPressRightArrow = useCallback(() => {
+    if (activeScreen !== HomeStackScreenList.HistoryTranslationScreen) {
+      navigation.navigate(HomeStackScreenList.HistoryTranslationScreen);
+    }
+    if (savedTranslations && currentHistoryIndex < savedTranslations?.length - 1) {
+      setCurrentHistoryIndex(currentHistoryIndex + 1);
+    }
+  }, [navigation, activeScreen, savedTranslations, currentHistoryIndex]);
+
+  const onPressInfo = useCallback(() => {
+    if (activeScreen !== HomeStackScreenList.HomeScreen) {
+      navigation.navigate(HomeStackScreenList.HomeScreen);
+    } else {
+      if (navigation.canGoBack()) navigation.goBack();
+    }
+  }, [navigation, activeScreen]);
+
   return (
     <Box
       backgroundColor="secondaryBackground"
@@ -20,9 +58,15 @@ const BottomTab = () => {
       paddingVertical="m"
       paddingHorizontal="mToL">
       <Box flexDirection="row" alignItems="center">
-        <Image source={LeftArrowIcon} width={36} height={36} />
-        <Image source={ClockIcon} width={28} height={28} />
-        <Image source={RightArrowIcon} width={36} height={36} />
+        <Pressable disabled={savedTranslations === null} onPress={onPressLeftArrow}>
+          <Image source={LeftArrowIcon} width={36} height={36} />
+        </Pressable>
+        <Pressable>
+          <Image source={ClockIcon} width={28} height={28} />
+        </Pressable>
+        <Pressable disabled={savedTranslations === null} onPress={onPressRightArrow}>
+          <Image source={RightArrowIcon} width={36} height={36} />
+        </Pressable>
       </Box>
       <Pressable
         style={{
@@ -31,8 +75,12 @@ const BottomTab = () => {
         }}>
         <SvgIcon icon={ShareIcon} width={26} height={26} color="iconDisabled" />
       </Pressable>
-      <Image source={InfoIcon} width={28} height={28} />
-      <Image source={SettingsIcon} width={28} height={28} />
+      <Pressable onPress={() => onPressInfo()}>
+        <Image source={InfoIcon} width={28} height={28} />
+      </Pressable>
+      <Pressable>
+        <Image source={SettingsIcon} width={28} height={28} />
+      </Pressable>
     </Box>
   );
 };

@@ -1,4 +1,5 @@
 export interface TranslationResponse {
+  title: string;
   main: TranslationResponseMain[];
   examples: TranslationResponseExample[];
 }

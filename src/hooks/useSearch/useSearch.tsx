@@ -1,6 +1,6 @@
 import { useQuery } from 'react-query';
 import { useSelector } from 'react-redux';
-import { languagePairSelector } from '../../store/authentication/authenticationReducerSelectors';
+import { languagePairSelector } from '../../store/translation/translationReducerSelectors';
 import { SearchResponse } from '../../types/models/search/search.types';
 import { querySearch } from './useSearch.actions';
 import { UseSearchOptions } from './useSearch.types';

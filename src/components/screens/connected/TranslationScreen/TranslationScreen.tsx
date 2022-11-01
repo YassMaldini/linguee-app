@@ -1,7 +1,11 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { FlashList } from '@shopify/flash-list';
 import { useContext, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import useTranslation from '../../../../hooks/useTranslation/useTranslation';
+import { saveTranslation } from '../../../../store/translation/translation/translationActions';
+import { savedTranslationsSelector } from '../../../../store/translation/translationReducerSelectors';
 import TranslationMainItem from '../../../commons/Translation/TranslationMainItem/TranslationMainItem';
 import TranslationTranslatedItem from '../../../commons/Translation/TranslationTranslatedItem.tsx/TranslationTranslatedItem';
 import Box from '../../../designSystem/Box/Box';
@@ -10,8 +14,12 @@ import { HomeStackScreenList } from '../../../navigation/HomeStack/HomeStack.typ
 import { TranslationScreenProps } from './TranslationScreen.types';
 
 const TranslationScreen = () => {
+  const dispatch = useDispatch();
+
   const { setActiveScreen } = useContext(HomeStackContext);
   const navigation = useNavigation<TranslationScreenProps['navigation']>();
+
+  const savedTranslations = useSelector(savedTranslationsSelector);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -26,14 +34,14 @@ const TranslationScreen = () => {
 
   const { data } = useTranslation({ url, wt });
 
-  // const data = translationHtmlStringToResponse(translationHtmlMock)
-
-  // useEffect(() => console.log(data))
-
-  // useEffect(() => console.log({
-  //   ...data,
-  //   examples: []
-  // } as TranslationResponse), [data])
+  useEffect(() => {
+    const isTranslationAlreadySaved = savedTranslations?.find(
+      (translation) => translation.title === data?.title
+    );
+    if (data && !isTranslationAlreadySaved) {
+      saveTranslation(data)(dispatch);
+    }
+  }, [data, savedTranslations]);
 
   return (
     <Box flex={1}>

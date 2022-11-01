@@ -35,7 +35,8 @@ const HomeScreen = () => {
         {...{ renderItem }}
         ListEmptyComponent={<HomeCarousel />}
         estimatedItemSize={20}
-        keyboardDismissMode="on-drag"
+        keyboardShouldPersistTaps="handled"
+        keyboardDismissMode="interactive"
       />
     </Box>
   );

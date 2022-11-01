@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { setLanguagePair } from '../../../../../store/authentication/authenticationActions/authenticationActions';
+import { setLanguagePair } from '../../../../../store/translation/translation/translationActions';
 import BottomModalItem from '../../../BottomModalItem/BottomModalItem';
 import { LanguagePairModalItemProps } from './LanguagePairModalItem.types';
 

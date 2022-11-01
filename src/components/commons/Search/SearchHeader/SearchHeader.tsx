@@ -24,10 +24,10 @@ import getSearchHeaderSchema from './SearchHeader.schema';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { USE_SEARCH_QUERY_KEY } from '../../../../hooks/useSearch/useSearch';
 import { useSelector } from 'react-redux';
-import { languagePairSelector } from '../../../../store/authentication/authenticationReducerSelectors';
 import { LanguagePairModal } from '../LanguagePairModal/LanguagePairModal';
 import { HomeStackContext } from '../../../navigation/HomeStack/HomeStack.context';
 import { HomeStackScreenList } from '../../../navigation/HomeStack/HomeStack.types';
+import { languagePairSelector } from '../../../../store/translation/translationReducerSelectors';
 
 const SearchHeader = () => {
   const theme = useTheme<Theme>();
@@ -43,7 +43,7 @@ const SearchHeader = () => {
     reValidateMode: 'onChange',
   });
 
-  const { control, getValues } = formProps;
+  const { control, getValues, setValue } = formProps;
 
   const {
     mutate,
@@ -65,8 +65,10 @@ const SearchHeader = () => {
 
   const onPressCross = (isKeyboardVisible: boolean) => {
     textInputRef.current?.clear();
+    setValue('search', '');
+    setSearchResponse(undefined);
     if (isKeyboardVisible) {
-      textInputRef.current?.blur();
+      // textInputRef.current?.blur();
     } else {
       textInputRef.current?.focus();
     }

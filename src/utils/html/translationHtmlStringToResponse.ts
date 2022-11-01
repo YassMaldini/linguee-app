@@ -19,6 +19,8 @@ export const translationHtmlStringToResponse = (html: string): TranslationRespon
 
   const main_response: TranslationResponseMain[] = [];
 
+  const title = root.querySelector('title')?.innerText.split(' - ')[0] || '';
+
   const exact = root.querySelector('.exact');
 
   const exact_lemma_items = (exact as HTMLElement).querySelectorAll('.lemma');
@@ -176,6 +178,7 @@ export const translationHtmlStringToResponse = (html: string): TranslationRespon
   // End inexact
 
   const response: TranslationResponse = {
+    title,
     main: main_response,
     examples: examples_response,
   };

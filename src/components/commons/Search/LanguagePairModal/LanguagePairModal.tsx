@@ -14,7 +14,7 @@ export const LanguagePairModal = forwardRef<any, any>((rest, ref) => {
       {Object.keys(LanguagePair).map((languagePair, index) => (
         <LanguagePairModalItem
           key={index}
-          // @ts-ignores
+          // @ts-ignore
           languagePair={LanguagePair[languagePair]}
           {...{ closeModal }}
         />
