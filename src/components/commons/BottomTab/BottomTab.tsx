@@ -40,6 +40,10 @@ const BottomTab = () => {
     }
   }, [navigation, activeScreen, savedTranslations, currentHistoryIndex]);
 
+  const onPressHistory = useCallback(() => {
+    navigation.navigate('HistoryScreen');
+  }, [navigation]);
+
   const onPressInfo = useCallback(() => {
     if (activeScreen !== HomeStackScreenList.HomeScreen) {
       navigation.navigate(HomeStackScreenList.HomeScreen);
@@ -61,7 +65,7 @@ const BottomTab = () => {
         <Pressable disabled={savedTranslations === null} onPress={onPressLeftArrow}>
           <Image source={LeftArrowIcon} width={36} height={36} />
         </Pressable>
-        <Pressable>
+        <Pressable onPress={onPressHistory}>
           <Image source={ClockIcon} width={28} height={28} />
         </Pressable>
         <Pressable disabled={savedTranslations === null} onPress={onPressRightArrow}>

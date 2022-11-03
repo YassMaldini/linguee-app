@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react';
 import { SearchResponse } from '../../../types/models/search/search.types';
 import BottomTab from '../../commons/BottomTab/BottomTab';
 import SearchHeader from '../../commons/Search/SearchHeader/SearchHeader';
+import HistoryScreen from '../../screens/connected/HistoryScreen/HistoryScreen';
 import HistoryTranslationScreen from '../../screens/connected/HistoryTranslationScreen/HistoryTranslationScreen';
 import HomeScreen from '../../screens/connected/HomeScreen/HomeScreen';
 import TranslationScreen from '../../screens/connected/TranslationScreen/TranslationScreen';
@@ -54,6 +55,7 @@ const HomeStack = () => {
           name={HomeStackScreenList.HistoryTranslationScreen}
           component={HistoryTranslationScreen}
         />
+        <Screen name={HomeStackScreenList.HistoryScreen} component={HistoryScreen} />
       </Navigator>
       <BottomTab />
     </HomeStackContext.Provider>

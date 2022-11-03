@@ -51,7 +51,7 @@ const Content = ({
       {!isChildrenString && children}
       {isChildrenString && (
         <Text
-          fontSize={14}
+          fontSize={16}
           textAlign="center"
           fontFamily={isBold ? 'Roboto-Bold' : 'Roboto-Regular'}
           color={buttonTextColor}>

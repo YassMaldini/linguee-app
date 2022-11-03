@@ -87,7 +87,7 @@ const SearchHeader = () => {
       androidAdjustResize>
       {({ isKeyboardVisible }) => {
         return (
-          <>
+          <Box visible={activeScreen !== HomeStackScreenList.HistoryScreen}>
             <Box flexDirection="row" alignItems="center">
               <Box padding="sToM">
                 {isKeyboardVisible ? (
@@ -135,7 +135,7 @@ const SearchHeader = () => {
               <LanguagePairModal ref={bottomModalRef} />
             </Box>
             {mutationError && <Text>{mutationError.message}</Text>}
-          </>
+          </Box>
         );
       }}
     </KeyboardAccessoryView>

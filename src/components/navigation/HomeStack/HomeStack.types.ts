@@ -6,12 +6,14 @@ export type HomeStackParamsList = {
   [HomeStackScreenList.HomeScreen]: undefined;
   [HomeStackScreenList.TranslationScreen]: { url: string; wt?: number };
   [HomeStackScreenList.HistoryTranslationScreen]: undefined;
+  [HomeStackScreenList.HistoryScreen]: undefined;
 };
 
 export enum HomeStackScreenList {
   HomeScreen = 'HomeScreen',
   TranslationScreen = 'TranslationScreen',
   HistoryTranslationScreen = 'HistoryTranslationScreen',
+  HistoryScreen = 'HistoryScreen',
 }
 
 export type HomeStackProps = NativeStackScreenProps<HomeStackParamsList, HomeStackScreenList>;

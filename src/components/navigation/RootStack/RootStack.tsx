@@ -1,10 +1,12 @@
-import { useMemo } from 'react';
+import { useCallback, useMemo } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useConfigureApi } from '../../../hooks/useConfigureApi/useConfigureApi';
 import getRootStackScreens from './getRootStackScreens/getRootStackScreens';
 import { useFonts } from 'expo-font';
-import Text from '../../designSystem/Text/Text';
-// import useIsSignedIn from '../../../hooks/auth/useIsSignedIn/useIsSignedIn';s
+import * as SplashScreen from 'expo-splash-screen';
+// import useIsSignedIn from '../../../hooks/auth/useIsSignedIn/useIsSignedIn';
+
+SplashScreen.preventAutoHideAsync();
 
 const RootStack = () => {
   useConfigureApi();
@@ -17,13 +19,23 @@ const RootStack = () => {
     'Roboto-Italic': require('../../../../assets/fonts/Roboto/Roboto-Italic.ttf'),
   });
 
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
   const screens = useMemo(() => getRootStackScreens({ isSignedIn }), [isSignedIn]);
 
   if (!fontsLoaded) {
-    return <Text>Loading for fonts...</Text>;
+    return null;
   }
 
-  return <SafeAreaView style={{ flex: 1 }}>{screens}</SafeAreaView>;
+  return (
+    <SafeAreaView style={{ flex: 1 }} onLayout={onLayoutRootView}>
+      {screens}
+    </SafeAreaView>
+  );
 };
 
 export default RootStack;

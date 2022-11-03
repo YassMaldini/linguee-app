@@ -10,7 +10,7 @@ import Box from '../../../designSystem/Box/Box';
 import { HomeStackContext } from '../../../navigation/HomeStack/HomeStack.context';
 import { HomeStackScreenList } from '../../../navigation/HomeStack/HomeStack.types';
 import { HistoryTranslationScreenProps } from './HistoryTranslationScreen.types';
-import GestureRecognizer from 'react-native-swipe-gestures';
+import { useSwipe } from '../../../../hooks/useSwipe/useSwipe';
 
 const HistoryTranslationScreen = () => {
   const { currentHistoryIndex, setCurrentHistoryIndex, setActiveScreen } =
@@ -32,6 +32,8 @@ const HistoryTranslationScreen = () => {
     }
   }, [currentHistoryIndex]);
 
+  const { onTouchStart, onTouchEnd } = useSwipe(goToNextTranslation, goToPreviousTranslation, 6);
+
   const currentTranslation = useMemo(
     () => savedTranslations?.[currentHistoryIndex || 0],
     [currentHistoryIndex]
@@ -48,24 +50,21 @@ const HistoryTranslationScreen = () => {
   }, [navigation]);
 
   return (
-    <GestureRecognizer
-      style={{ flex: 1 }}
-      onSwipeLeft={goToNextTranslation}
-      onSwipeRight={goToPreviousTranslation}>
-      <FlashList
-        data={currentTranslation?.main}
-        renderItem={({ item }) => {
-          return (
-            <Box flex={1} padding="m">
-              <TranslationMainItem {...item.mainItem} />
-              {item.translatedItems && <TranslationTranslatedItem {...item.translatedItems} />}
-            </Box>
-          );
-        }}
-        ListEmptyComponent={<ActivityIndicator size="large" />}
-        estimatedItemSize={20}
-      />
-    </GestureRecognizer>
+    <FlashList
+      data={currentTranslation?.main}
+      renderItem={({ item }) => {
+        return (
+          <Box flex={1} padding="m" backgroundColor="primaryButton">
+            <TranslationMainItem {...item.mainItem} />
+            {item.translatedItems && <TranslationTranslatedItem {...item.translatedItems} />}
+          </Box>
+        );
+      }}
+      ListEmptyComponent={<ActivityIndicator size="large" />}
+      estimatedItemSize={20}
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    />
   );
 };
 

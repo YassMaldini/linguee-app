@@ -13,6 +13,7 @@ export enum ButtonColors {
   Primary = 'primary',
   PrimaryOutline = 'primaryOutline',
   PrimaryText = 'primaryText',
+  HighlightedText = 'HighlightedText',
 }
 
 export enum ButtonVariants {

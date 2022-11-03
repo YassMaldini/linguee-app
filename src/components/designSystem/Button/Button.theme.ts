@@ -38,6 +38,16 @@ export const BUTTONS_COLORS = Object.freeze<ButtonColorsData>({
       text: 'primaryText',
     },
   },
+  [ButtonColors.HighlightedText]: {
+    regular: {
+      background: 'transparent',
+      text: 'primaryButton',
+    },
+    disabled: {
+      background: 'transparent',
+      text: 'gray4',
+    },
+  },
 });
 
 export const getButtonBackgroundColor = ({
