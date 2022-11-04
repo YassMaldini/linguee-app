@@ -26,4 +26,6 @@ export interface HomeStackContextProps {
   currentHistoryIndex: number;
   setCurrentHistoryIndex: Dispatch<SetStateAction<number>>;
   navigation: NativeStackNavigationProp<HomeStackParamsList>;
+  isSettingsModalVisible: boolean;
+  setSettingsModalVisible: Dispatch<SetStateAction<boolean>>;
 }

@@ -1,6 +1,7 @@
 import { querySearch } from '../../../../hooks/useSearch/useSearch.actions';
 import { LanguagePair } from '../../../../types/models/languages/languagePair.types';
 import { SearchHeaderMutationVariables } from './SearchHeader.types';
+import * as Clipboard from 'expo-clipboard';
 
 export const searchHeaderMutation = ({
   languagePair,
@@ -14,4 +15,9 @@ export const searchHeaderMutation = ({
   };
 
   return querySearch({ languagePair, options });
+};
+
+export const fetchCopiedText = async () => {
+  const text = await Clipboard.getStringAsync();
+  return text;
 };

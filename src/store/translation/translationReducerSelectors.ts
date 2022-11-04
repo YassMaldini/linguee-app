@@ -4,3 +4,6 @@ export const languagePairSelector = ({ translation: reducer }: RootState) => red
 
 export const savedTranslationsSelector = ({ translation: reducer }: RootState) =>
   reducer.savedTranslations;
+
+export const clipboardEnabledSelector = ({ translation: reducer }: RootState) =>
+  reducer.isClipboardEnabled;

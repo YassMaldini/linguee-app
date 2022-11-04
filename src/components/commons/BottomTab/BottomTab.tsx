@@ -15,8 +15,14 @@ import { useSelector } from 'react-redux';
 import { savedTranslationsSelector } from '../../../store/translation/translationReducerSelectors';
 
 const BottomTab = () => {
-  const { navigation, activeScreen, currentHistoryIndex, setCurrentHistoryIndex } =
-    useContext(HomeStackContext);
+  const {
+    navigation,
+    activeScreen,
+    currentHistoryIndex,
+    setCurrentHistoryIndex,
+    isSettingsModalVisible,
+    setSettingsModalVisible,
+  } = useContext(HomeStackContext);
 
   const savedTranslations = useSelector(savedTranslationsSelector);
 
@@ -41,7 +47,7 @@ const BottomTab = () => {
   }, [navigation, activeScreen, savedTranslations, currentHistoryIndex]);
 
   const onPressHistory = useCallback(() => {
-    navigation.navigate('HistoryScreen');
+    navigation.navigate(HomeStackScreenList.HistoryScreen);
   }, [navigation]);
 
   const onPressInfo = useCallback(() => {
@@ -82,7 +88,7 @@ const BottomTab = () => {
       <Pressable onPress={() => onPressInfo()}>
         <Image source={InfoIcon} width={28} height={28} />
       </Pressable>
-      <Pressable>
+      <Pressable onPress={() => setSettingsModalVisible(!isSettingsModalVisible)}>
         <Image source={SettingsIcon} width={28} height={28} />
       </Pressable>
     </Box>

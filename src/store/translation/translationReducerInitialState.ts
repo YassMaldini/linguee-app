@@ -4,6 +4,7 @@ import TranslationReducerState from './translationReducer.types';
 const TRANSLATION_REDUCER_INITIAL_STATE = Object.freeze<TranslationReducerState>({
   languagePair: LanguagePair.ENtoFR,
   savedTranslations: null,
+  isClipboardEnabled: false,
 });
 
 export default TRANSLATION_REDUCER_INITIAL_STATE;

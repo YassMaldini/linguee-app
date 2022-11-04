@@ -4,6 +4,7 @@ import { TranslationResponse } from '../../types/models/translation/translation.
 interface TranslationReducerState {
   languagePair: LanguagePair;
   savedTranslations: TranslationResponse[] | null;
+  isClipboardEnabled: boolean;
 }
 
 export default TranslationReducerState;

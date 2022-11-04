@@ -6,6 +6,7 @@ export const SET_LANGUAGE_PAIR = 'SET_LANGUAGE_PAIR';
 export const SAVE_TRANSLATION = 'SAVE_TRANSLATION';
 export const SET_SAVED_TRANSLATIONS = 'SET_SAVED_TRANSLATIONS';
 export const RESET_TRANSLATIONS = 'RESET_TRANSLATIONS';
+export const SET_CLIPBOARD_ENABLED = 'SET_CLIPBOARD_ENABLED';
 
 export interface SetLanguagePairAction extends Action {
   type: typeof SET_LANGUAGE_PAIR;
@@ -22,6 +23,11 @@ export interface SetSavedTranslationsAction extends Action {
   savedTranslations: TranslationResponse[] | null;
 }
 
+export interface SetClipboardEnabledAction extends Action {
+  type: typeof SET_CLIPBOARD_ENABLED;
+  isClipboardEnabled: boolean;
+}
+
 export interface ResetTranslationsAction extends Action {
   type: typeof RESET_TRANSLATIONS;
 }
@@ -30,6 +36,7 @@ type TranslationReducerActionsTypes =
   | SetLanguagePairAction
   | ResetTranslationsAction
   | SaveTranslationAction
-  | SetSavedTranslationsAction;
+  | SetSavedTranslationsAction
+  | SetClipboardEnabledAction;
 
 export default TranslationReducerActionsTypes;

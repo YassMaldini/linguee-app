@@ -8,7 +8,7 @@ import CrossIcon from '../../../../../assets/images/ic_highlight_remove_grey_800
 import Text from '../../../designSystem/Text/Text';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../../utils/theme/theme';
-import { useContext, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { ActivityIndicator, TextInput as RNTextInput, Keyboard } from 'react-native';
 import Pressable from '../../../designSystem/Pressable/Pressable';
 import { useMutation, useQueryClient } from 'react-query';
@@ -17,7 +17,7 @@ import {
   SearchHeaderMutationVariables,
   SearchHeaderSchema,
 } from './SearchHeader.types';
-import { searchHeaderMutation } from './SearchHeader.actions';
+import { fetchCopiedText, searchHeaderMutation } from './SearchHeader.actions';
 import { Controller, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import getSearchHeaderSchema from './SearchHeader.schema';
@@ -27,7 +27,10 @@ import { useSelector } from 'react-redux';
 import { LanguagePairModal } from '../LanguagePairModal/LanguagePairModal';
 import { HomeStackContext } from '../../../navigation/HomeStack/HomeStack.context';
 import { HomeStackScreenList } from '../../../navigation/HomeStack/HomeStack.types';
-import { languagePairSelector } from '../../../../store/translation/translationReducerSelectors';
+import {
+  clipboardEnabledSelector,
+  languagePairSelector,
+} from '../../../../store/translation/translationReducerSelectors';
 
 const SearchHeader = () => {
   const theme = useTheme<Theme>();
@@ -36,6 +39,7 @@ const SearchHeader = () => {
   const bottomModalRef = useRef<BottomSheetModal>(null);
   const queryClient = useQueryClient();
   const languagePair = useSelector(languagePairSelector);
+  const isCliboardEnabled = useSelector(clipboardEnabledSelector);
 
   const formProps = useForm<SearchHeaderSchema>({
     resolver: yupResolver(getSearchHeaderSchema()),
@@ -44,6 +48,18 @@ const SearchHeader = () => {
   });
 
   const { control, getValues, setValue } = formProps;
+
+  useEffect(() => {
+    if (isCliboardEnabled) {
+      (async () => {
+        const copiedText = await fetchCopiedText();
+        if (copiedText !== '') {
+          setValue('search', copiedText);
+          mutate({ search: copiedText });
+        }
+      })();
+    }
+  }, [isCliboardEnabled]);
 
   const {
     mutate,

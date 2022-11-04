@@ -25,8 +25,6 @@ export const useConfigureApi = () => {
     console.log(PREFIX, `api base url: ${api.getBaseURL()}`);
 
     api.addMonitor(monitor);
-
-    console.log('api.headers', api.headers);
   }, [monitor]);
 
   return api;

@@ -3,8 +3,10 @@ import {
   RESET_TRANSLATIONS,
   SaveTranslationAction,
   SAVE_TRANSLATION,
+  SetClipboardEnabledAction,
   SetLanguagePairAction,
   SetSavedTranslationsAction,
+  SET_CLIPBOARD_ENABLED,
   SET_LANGUAGE_PAIR,
   SET_SAVED_TRANSLATIONS,
 } from './translationActions.types';
@@ -34,6 +36,13 @@ export const setSavedTranslations =
       savedTranslations,
     });
   };
+
+export const setCliboardEnabled = (isClipboardEnabled: boolean) => async (dispatch: Dispatch) => {
+  dispatch<SetClipboardEnabledAction>({
+    type: SET_CLIPBOARD_ENABLED,
+    isClipboardEnabled,
+  });
+};
 
 export const resetTranslations = () => async (dispatch: Dispatch) => {
   dispatch<ResetTranslationsAction>({

@@ -2,6 +2,7 @@ import { Reducer } from 'redux';
 import TranslationReducerActionsTypes, {
   RESET_TRANSLATIONS,
   SAVE_TRANSLATION,
+  SET_CLIPBOARD_ENABLED,
   SET_LANGUAGE_PAIR,
   SET_SAVED_TRANSLATIONS,
 } from './translation/translationActions.types';
@@ -33,6 +34,13 @@ const translationReducer: Reducer<TranslationReducerState, TranslationReducerAct
       return {
         ...state,
         savedTranslations: action.savedTranslations,
+      };
+    }
+
+    case SET_CLIPBOARD_ENABLED: {
+      return {
+        ...state,
+        isClipboardEnabled: action.isClipboardEnabled,
       };
     }
 

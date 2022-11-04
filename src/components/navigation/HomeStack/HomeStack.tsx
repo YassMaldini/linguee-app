@@ -3,6 +3,7 @@ import { useMemo, useState } from 'react';
 import { SearchResponse } from '../../../types/models/search/search.types';
 import BottomTab from '../../commons/BottomTab/BottomTab';
 import SearchHeader from '../../commons/Search/SearchHeader/SearchHeader';
+import SettingsModal from '../../commons/SettingsModal/SettingsModal';
 import HistoryScreen from '../../screens/connected/HistoryScreen/HistoryScreen';
 import HistoryTranslationScreen from '../../screens/connected/HistoryTranslationScreen/HistoryTranslationScreen';
 import HomeScreen from '../../screens/connected/HomeScreen/HomeScreen';
@@ -19,6 +20,7 @@ const HomeStack = () => {
   );
   const [searchResponse, setSearchResponse] = useState<SearchResponse>();
   const [currentHistoryIndex, setCurrentHistoryIndex] = useState<number>(0);
+  const [isSettingsModalVisible, setSettingsModalVisible] = useState<boolean>(false);
 
   const contextValue = useMemo<HomeStackContextProps>(
     () => ({
@@ -28,6 +30,8 @@ const HomeStack = () => {
       setSearchResponse,
       currentHistoryIndex,
       setCurrentHistoryIndex,
+      isSettingsModalVisible,
+      setSettingsModalVisible,
       navigation,
     }),
     [
@@ -37,6 +41,8 @@ const HomeStack = () => {
       setSearchResponse,
       currentHistoryIndex,
       setCurrentHistoryIndex,
+      isSettingsModalVisible,
+      setSettingsModalVisible,
       navigation,
     ]
   );
@@ -57,6 +63,7 @@ const HomeStack = () => {
         />
         <Screen name={HomeStackScreenList.HistoryScreen} component={HistoryScreen} />
       </Navigator>
+      <SettingsModal />
       <BottomTab />
     </HomeStackContext.Provider>
   );
