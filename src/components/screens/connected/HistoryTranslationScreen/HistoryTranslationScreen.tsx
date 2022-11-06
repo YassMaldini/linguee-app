@@ -13,7 +13,7 @@ import { HistoryTranslationScreenProps } from './HistoryTranslationScreen.types'
 import { useSwipe } from '../../../../hooks/useSwipe/useSwipe';
 
 const HistoryTranslationScreen = () => {
-  const { currentHistoryIndex, setCurrentHistoryIndex, setActiveScreen } =
+  const { currentHistoryIndex, setCurrentHistoryIndex, setActiveScreen, setActiveTranslation } =
     useContext(HomeStackContext);
 
   const savedTranslations = useSelector(savedTranslationsSelector);
@@ -44,10 +44,12 @@ const HistoryTranslationScreen = () => {
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       setActiveScreen(HomeStackScreenList.HistoryTranslationScreen);
+      setActiveTranslation(currentTranslation);
+      console.log('currentTranslation', currentTranslation);
     });
 
     return unsubscribe;
-  }, [navigation]);
+  }, [navigation, currentTranslation]);
 
   return (
     <FlashList

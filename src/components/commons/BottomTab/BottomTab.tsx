@@ -13,6 +13,7 @@ import { HomeStackContext } from '../../navigation/HomeStack/HomeStack.context';
 import { HomeStackScreenList } from '../../navigation/HomeStack/HomeStack.types';
 import { useSelector } from 'react-redux';
 import { savedTranslationsSelector } from '../../../store/translation/translationReducerSelectors';
+import { Share } from 'react-native';
 
 const BottomTab = () => {
   const {
@@ -22,6 +23,7 @@ const BottomTab = () => {
     setCurrentHistoryIndex,
     isSettingsModalVisible,
     setSettingsModalVisible,
+    activeTranslation,
   } = useContext(HomeStackContext);
 
   const savedTranslations = useSelector(savedTranslationsSelector);
@@ -58,6 +60,25 @@ const BottomTab = () => {
     }
   }, [navigation, activeScreen]);
 
+  const onPressShare = useCallback(async () => {
+    try {
+      const result = await Share.share({
+        message: `https://linguee.com${activeTranslation?.url}`,
+      });
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          console.log('shared with activity type of result.activityType', result.activityType);
+        } else {
+          console.log('shared');
+        }
+      } else if (result.action === Share.dismissedAction) {
+        console.log('dismissed');
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }, [activeTranslation]);
+
   return (
     <Box
       backgroundColor="secondaryBackground"
@@ -79,11 +100,22 @@ const BottomTab = () => {
         </Pressable>
       </Box>
       <Pressable
+        onPress={onPressShare}
         style={{
           position: 'relative',
           bottom: 0.5,
         }}>
-        <SvgIcon icon={ShareIcon} width={26} height={26} color="iconDisabled" />
+        <SvgIcon
+          icon={ShareIcon}
+          width={26}
+          height={26}
+          color={
+            activeScreen === HomeStackScreenList.TranslationScreen ||
+            activeScreen === HomeStackScreenList.HistoryTranslationScreen
+              ? 'gray3'
+              : 'iconDisabled'
+          }
+        />
       </Pressable>
       <Pressable onPress={() => onPressInfo()}>
         <Image source={InfoIcon} width={28} height={28} />

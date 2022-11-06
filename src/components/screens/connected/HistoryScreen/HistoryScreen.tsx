@@ -121,7 +121,7 @@ const HistoryScreen = () => {
                 <Image source={StopImage} width={20} height={20} marginRight="s" />
               </Pressable>
             </Animated.View>
-            <Box backgroundColor="primaryBackground">
+            <Box width={'100%'} backgroundColor="primaryBackground">
               <Text>{item.title}</Text>
             </Box>
           </Box>

@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { useMemo, useState } from 'react';
 import { SearchResponse } from '../../../types/models/search/search.types';
+import { TranslationResponse } from '../../../types/models/translation/translation.types';
 import BottomTab from '../../commons/BottomTab/BottomTab';
 import SearchHeader from '../../commons/Search/SearchHeader/SearchHeader';
 import SettingsModal from '../../commons/SettingsModal/SettingsModal';
@@ -20,6 +21,7 @@ const HomeStack = () => {
   );
   const [searchResponse, setSearchResponse] = useState<SearchResponse>();
   const [currentHistoryIndex, setCurrentHistoryIndex] = useState<number>(0);
+  const [activeTranslation, setActiveTranslation] = useState<TranslationResponse | undefined>();
   const [isSettingsModalVisible, setSettingsModalVisible] = useState<boolean>(false);
 
   const contextValue = useMemo<HomeStackContextProps>(
@@ -32,6 +34,8 @@ const HomeStack = () => {
       setCurrentHistoryIndex,
       isSettingsModalVisible,
       setSettingsModalVisible,
+      activeTranslation,
+      setActiveTranslation,
       navigation,
     }),
     [
@@ -43,6 +47,8 @@ const HomeStack = () => {
       setCurrentHistoryIndex,
       isSettingsModalVisible,
       setSettingsModalVisible,
+      activeTranslation,
+      setActiveTranslation,
       navigation,
     ]
   );
