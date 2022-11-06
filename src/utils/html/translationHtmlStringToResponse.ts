@@ -9,7 +9,7 @@ import {
 } from '../../types/models/translation/translation.types';
 import { decodeHTMLEntities } from './decodeHTMLEntities';
 
-export const translationHtmlStringToResponse = (html: string): TranslationResponse => {
+export const translationHtmlStringToResponse = (html: string, url: string): TranslationResponse => {
   // remove "·" from html string to parse more easily
   html = html.split("<span class='sep'>&middot;</span>").join('');
 
@@ -179,6 +179,7 @@ export const translationHtmlStringToResponse = (html: string): TranslationRespon
 
   const response: TranslationResponse = {
     title,
+    url,
     main: main_response,
     examples: examples_response,
   };

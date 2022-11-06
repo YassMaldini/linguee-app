@@ -16,7 +16,7 @@ import { TranslationScreenProps } from './TranslationScreen.types';
 const TranslationScreen = () => {
   const dispatch = useDispatch();
 
-  const { setActiveScreen } = useContext(HomeStackContext);
+  const { setActiveScreen, setActiveTranslation } = useContext(HomeStackContext);
   const navigation = useNavigation<TranslationScreenProps['navigation']>();
 
   const savedTranslations = useSelector(savedTranslationsSelector);
@@ -40,6 +40,7 @@ const TranslationScreen = () => {
     );
     if (data && !isTranslationAlreadySaved) {
       saveTranslation(data)(dispatch);
+      setActiveTranslation(data);
     }
   }, [data, savedTranslations]);
 

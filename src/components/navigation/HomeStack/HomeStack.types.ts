@@ -1,6 +1,7 @@
 import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Dispatch, SetStateAction } from 'react';
 import { SearchResponse } from '../../../types/models/search/search.types';
+import { TranslationResponse } from '../../../types/models/translation/translation.types';
 
 export type HomeStackParamsList = {
   [HomeStackScreenList.HomeScreen]: undefined;
@@ -25,6 +26,8 @@ export interface HomeStackContextProps {
   setActiveScreen: Dispatch<SetStateAction<HomeStackScreenList>>;
   currentHistoryIndex: number;
   setCurrentHistoryIndex: Dispatch<SetStateAction<number>>;
+  activeTranslation: TranslationResponse | undefined;
+  setActiveTranslation: Dispatch<SetStateAction<TranslationResponse | undefined>>;
   navigation: NativeStackNavigationProp<HomeStackParamsList>;
   isSettingsModalVisible: boolean;
   setSettingsModalVisible: Dispatch<SetStateAction<boolean>>;

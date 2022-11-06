@@ -34,5 +34,5 @@ export const queryTranslation = async ({ url, options }: QueryTranslationOptions
   }
 
   console.log(PREFIX, `Received translation page.`);
-  return translationHtmlStringToResponse(data as string);
+  return translationHtmlStringToResponse(data as string, url);
 };
