@@ -2,7 +2,7 @@
   "name": "linguee-app",
   "version": "1.0.0",
   "scripts": {
-    "start": "expo start",
+    "start": "npm cache clean --force && expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",

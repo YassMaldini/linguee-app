@@ -1,9 +1,10 @@
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { Alert, Dimensions, Modal, TouchableWithoutFeedback } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { setCliboardEnabled } from '../../../store/translation/translation/translationActions';
 import { clipboardEnabledSelector } from '../../../store/translation/translationReducerSelectors';
+import { isLandscape } from '../../../utils/orientation/isLandscape';
 import Box from '../../designSystem/Box/Box';
 import { HomeStackContext } from '../../navigation/HomeStack/HomeStack.context';
 import SettingsModalItem from './SettingsModalItem/SettingsModalItem';
@@ -11,11 +12,19 @@ import SettingsModalTitle from './SettingsModalTitle/SettingsModalTitle';
 
 const SettingsModal = () => {
   const dispatch = useDispatch();
-  const { isSettingsModalVisible, setSettingsModalVisible } = useContext(HomeStackContext);
+  const { isSettingsModalVisible, setSettingsModalVisible, currentScreenOrientation } =
+    useContext(HomeStackContext);
   const isCliboardEnabled = useSelector(clipboardEnabledSelector);
   const toggleSwitch = () => setCliboardEnabled(!isCliboardEnabled)(dispatch);
 
-  const MODAL_SIZE = Dimensions.get('window').width * 0.8;
+  const isPortrait = useMemo(
+    () => !isLandscape(currentScreenOrientation),
+    [currentScreenOrientation]
+  );
+
+  const MODAL_SIZE = isPortrait
+    ? Dimensions.get('window').width * 0.8
+    : Dimensions.get('window').height * 0.8;
 
   return (
     <Modal
@@ -43,7 +52,11 @@ const SettingsModal = () => {
               padding="m"
               paddingRight="none"
               borderRadius="m"
-              backgroundColor="secondaryBackground">
+              backgroundColor="secondaryBackground"
+              {...(!isPortrait && {
+                borderWidth: 0.5,
+                borderColor: 'gray5',
+              })}>
               <SettingsModalTitle title="Settings" />
               <SettingsModalItem
                 label="Look up clipboard content"
