@@ -1,5 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { SearchResponse } from '../../../types/models/search/search.types';
 import { TranslationResponse } from '../../../types/models/translation/translation.types';
 import BottomTab from '../../commons/BottomTab/BottomTab';
@@ -12,6 +12,12 @@ import TranslationScreen from '../../screens/connected/TranslationScreen/Transla
 import { HomeStackContext } from './HomeStack.context';
 import { Navigator, Screen } from './HomeStack.navigator';
 import { HomeStackContextProps, HomeStackProps, HomeStackScreenList } from './HomeStack.types';
+import {
+  addOrientationChangeListener,
+  removeOrientationChangeListener,
+  Orientation,
+  getOrientationAsync,
+} from 'expo-screen-orientation';
 
 const HomeStack = () => {
   const navigation = useNavigation<HomeStackProps['navigation']>();
@@ -23,6 +29,21 @@ const HomeStack = () => {
   const [currentHistoryIndex, setCurrentHistoryIndex] = useState<number>(0);
   const [activeTranslation, setActiveTranslation] = useState<TranslationResponse | undefined>();
   const [isSettingsModalVisible, setSettingsModalVisible] = useState<boolean>(false);
+  const [currentScreenOrientation, setCurrentScreenOrientation] = useState<Orientation>(
+    Orientation.PORTRAIT_UP
+  );
+
+  useEffect(() => {
+    (async () => {
+      const orientation = await getOrientationAsync();
+      setCurrentScreenOrientation(orientation);
+    })();
+    const subscription = addOrientationChangeListener((e) => {
+      console.log('e.orientationInfo.orientation', e.orientationInfo.orientation);
+      setCurrentScreenOrientation(e.orientationInfo.orientation);
+    });
+    return () => removeOrientationChangeListener(subscription);
+  }, []);
 
   const contextValue = useMemo<HomeStackContextProps>(
     () => ({
@@ -36,6 +57,7 @@ const HomeStack = () => {
       setSettingsModalVisible,
       activeTranslation,
       setActiveTranslation,
+      currentScreenOrientation,
       navigation,
     }),
     [
@@ -49,6 +71,7 @@ const HomeStack = () => {
       setSettingsModalVisible,
       activeTranslation,
       setActiveTranslation,
+      currentScreenOrientation,
       navigation,
     ]
   );

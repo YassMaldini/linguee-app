@@ -1,14 +1,28 @@
 import Box from '../../../../designSystem/Box/Box';
 import Carousel from 'react-native-reanimated-carousel';
-import { Dimensions } from 'react-native';
-import { useState } from 'react';
+import { Platform } from 'react-native';
+import { useContext, useMemo, useState } from 'react';
+import { Orientation } from 'expo-screen-orientation';
 import { homeCarouselItemsList } from './HomeCarousel.data';
+import { useSafeAreaFrame } from 'react-native-safe-area-context';
+import { HomeStackContext } from '../../../../navigation/HomeStack/HomeStack.context';
 
 const HomeCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const { currentScreenOrientation } = useContext(HomeStackContext);
+  const { width: screenWidth, height: screenHeight } = useSafeAreaFrame();
 
-  const width = Dimensions.get('window').width;
-  const height = Dimensions.get('window').height;
+  const width = useMemo(() => {
+    if (
+      Platform.OS === 'ios' &&
+      (currentScreenOrientation === Orientation.LANDSCAPE_LEFT ||
+        currentScreenOrientation === Orientation.LANDSCAPE_RIGHT)
+    ) {
+      return screenWidth * 0.89;
+    } else {
+      return screenWidth;
+    }
+  }, [screenWidth, currentScreenOrientation, Platform]);
 
   return (
     <Box flex={1}>
@@ -30,7 +44,7 @@ const HomeCarousel = () => {
       <Carousel
         style={{ flex: 1 }}
         width={width}
-        height={height}
+        height={screenHeight}
         data={homeCarouselItemsList}
         scrollAnimationDuration={600}
         onSnapToItem={(index) => setActiveIndex(index)}

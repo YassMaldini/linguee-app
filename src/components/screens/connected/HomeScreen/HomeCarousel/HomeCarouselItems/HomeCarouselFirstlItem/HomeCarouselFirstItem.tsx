@@ -3,12 +3,27 @@ import Image from '../../../../../../designSystem/Image/Image';
 import LogoImage from '../../../../../../../../assets/images/linguee_logo_weiss_big.png';
 import SwipeImage from '../../../../../../../../assets/images/swipe_left.png';
 import Text from '../../../../../../designSystem/Text/Text';
+import { useContext, useMemo } from 'react';
+import { HomeStackContext } from '../../../../../../navigation/HomeStack/HomeStack.context';
+import { Orientation } from 'expo-screen-orientation';
 
 const HomeCarouselFirstItem = () => {
+  const { currentScreenOrientation } = useContext(HomeStackContext);
   const width = 200;
   const swipeImageWidth = 165;
+  const isLandscape = useMemo(() => {
+    if (
+      currentScreenOrientation === Orientation.LANDSCAPE_LEFT ||
+      currentScreenOrientation === Orientation.LANDSCAPE_RIGHT
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }, [currentScreenOrientation]);
+
   return (
-    <Box flex={1} padding="l" justifyContent="center">
+    <Box flex={1} paddingVertical="l" justifyContent={!isLandscape ? 'center' : undefined}>
       <Box alignItems="center" marginBottom="xxxl">
         <Image source={LogoImage} width={width} height={width / 2.5} marginBottom="sToM" />
         <Text textAlign="center" fontSize={16}>

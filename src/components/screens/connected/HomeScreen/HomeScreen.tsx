@@ -2,7 +2,7 @@ import { useCallback, useContext, useEffect } from 'react';
 import Box from '../../../designSystem/Box/Box';
 import SearchItem from '../../../commons/Search/SearchItem/SearchItem';
 import { SearchResponseObject } from '../../../../types/models/search/search.types';
-import { FlashList, ListRenderItem } from '@shopify/flash-list';
+import { FlashList, FlashListProps, ListRenderItem } from '@shopify/flash-list';
 import { HomeStackContext } from '../../../navigation/HomeStack/HomeStack.context';
 import { useNavigation } from '@react-navigation/native';
 import { TranslationScreenProps } from '../TranslationScreen/TranslationScreen.types';
@@ -10,8 +10,13 @@ import { HomeStackScreenList } from '../../../navigation/HomeStack/HomeStack.typ
 import HomeCarousel from './HomeCarousel/HomeCarousel';
 
 const HomeScreen = () => {
-  const { setActiveScreen } = useContext(HomeStackContext);
+  const { setActiveScreen, currentScreenOrientation } = useContext(HomeStackContext);
   const navigation = useNavigation<TranslationScreenProps['navigation']>();
+
+  useEffect(
+    () => console.log('currentScreenOrientation', currentScreenOrientation),
+    [currentScreenOrientation]
+  );
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -28,9 +33,17 @@ const HomeScreen = () => {
     [searchResponse]
   );
 
+  const CallbackFlashList = useCallback(
+    (props: FlashListProps<any>) => {
+      console.log(currentScreenOrientation);
+      return <FlashList {...props} />;
+    },
+    [currentScreenOrientation]
+  );
+
   return (
     <Box flex={1}>
-      <FlashList
+      <CallbackFlashList
         data={searchResponse}
         {...{ renderItem }}
         ListEmptyComponent={<HomeCarousel />}

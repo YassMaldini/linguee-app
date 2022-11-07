@@ -1,5 +1,6 @@
 import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Dispatch, SetStateAction } from 'react';
+import { Orientation } from 'expo-screen-orientation';
 import { SearchResponse } from '../../../types/models/search/search.types';
 import { TranslationResponse } from '../../../types/models/translation/translation.types';
 
@@ -28,7 +29,8 @@ export interface HomeStackContextProps {
   setCurrentHistoryIndex: Dispatch<SetStateAction<number>>;
   activeTranslation: TranslationResponse | undefined;
   setActiveTranslation: Dispatch<SetStateAction<TranslationResponse | undefined>>;
-  navigation: NativeStackNavigationProp<HomeStackParamsList>;
   isSettingsModalVisible: boolean;
   setSettingsModalVisible: Dispatch<SetStateAction<boolean>>;
+  currentScreenOrientation: Orientation;
+  navigation: NativeStackNavigationProp<HomeStackParamsList>;
 }
