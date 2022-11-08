@@ -2,6 +2,8 @@ import { useContext, useMemo } from 'react';
 import { Alert, Dimensions, Modal, TouchableWithoutFeedback } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { setDarkMode } from '../../../store/main/mainActions/mainActions';
+import { darkModeSelector } from '../../../store/main/mainReducerSelectors';
 import { setCliboardEnabled } from '../../../store/translation/translation/translationActions';
 import { clipboardEnabledSelector } from '../../../store/translation/translationReducerSelectors';
 import { isLandscape } from '../../../utils/orientation/isLandscape';
@@ -14,8 +16,10 @@ const SettingsModal = () => {
   const dispatch = useDispatch();
   const { isSettingsModalVisible, setSettingsModalVisible, currentScreenOrientation } =
     useContext(HomeStackContext);
+  const isDarkMode = useSelector(darkModeSelector);
   const isCliboardEnabled = useSelector(clipboardEnabledSelector);
-  const toggleSwitch = () => setCliboardEnabled(!isCliboardEnabled)(dispatch);
+  const clipboardSwitch = () => setCliboardEnabled(!isCliboardEnabled)(dispatch);
+  const darkModeSwitch = () => setDarkMode(!isDarkMode)(dispatch);
 
   const isPortrait = useMemo(
     () => !isLandscape(currentScreenOrientation),
@@ -55,12 +59,18 @@ const SettingsModal = () => {
               backgroundColor="secondaryBackground"
               {...(!isPortrait && {
                 borderWidth: 0.5,
-                borderColor: 'gray5',
+                borderColor: 'gray6',
               })}>
               <SettingsModalTitle title="Settings" />
               <SettingsModalItem
                 label="Look up clipboard content"
-                {...{ toggleSwitch, isEnabled: isCliboardEnabled }}
+                toggleSwitch={clipboardSwitch}
+                isEnabled={isCliboardEnabled}
+              />
+              <SettingsModalItem
+                label="Enable dark mode"
+                toggleSwitch={darkModeSwitch}
+                isEnabled={isDarkMode}
               />
             </Box>
           </TouchableWithoutFeedback>

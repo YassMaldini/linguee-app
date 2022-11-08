@@ -45,7 +45,7 @@ const TranslationScreen = () => {
   }, [data, savedTranslations]);
 
   return (
-    <Box flex={1}>
+    <Box flex={1} backgroundColor="primaryBackground">
       <FlashList
         data={data?.main}
         renderItem={({ item }) => {

@@ -17,20 +17,25 @@ const ScreenHeader = ({
   const { goBack } = useNavigation<ConnectedStackProps['navigation']>();
 
   return (
-    <Box paddingVertical="s" flexDirection="row" alignItems="center" justifyContent="space-between">
+    <Box
+      paddingVertical="s"
+      flexDirection="row"
+      alignItems="center"
+      justifyContent="space-between"
+      backgroundColor="primaryBackground">
       {showGoBackTouchable && (
         <Pressable onPress={goBack} padding="s" flexDirection="row" alignItems="center">
           {/* <Image source={LeftArrowBlue} width={48} height={48} /> */}
-          <SvgIcon icon={LeftArrowIcon} color={goBackIconColor} width={24} height={24} />
+          <SvgIcon icon={LeftArrowIcon} color={goBackIconColor} width={26} height={26} />
           {showGoBackLabel && (
-            <Text marginLeft="xxs" fontSize={16} color="primaryButton">
+            <Text marginLeft="xxs" fontSize={18} color="defaultButton">
               Back
             </Text>
           )}
         </Pressable>
       )}
       {title && (
-        <Text fontSize={18} fontWeight="800">
+        <Text fontSize={18} fontFamily="Roboto-Bold">
           {title}
         </Text>
       )}

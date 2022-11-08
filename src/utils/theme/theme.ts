@@ -1,9 +1,10 @@
 import { createTheme } from '@shopify/restyle';
-import COMMONS_COLORS from './colors/commons';
+import { DARK_COLORS } from './colors/dark';
+import { LIGHT_COLORS } from './colors/light';
 
-const getTheme = () =>
+const getTheme = (darkMode: boolean) =>
   createTheme({
-    colors: { ...COMMONS_COLORS },
+    colors: darkMode ? DARK_COLORS : LIGHT_COLORS,
     spacing: {
       none: 0,
       xxs: 2,
@@ -48,7 +49,6 @@ const getTheme = () =>
     textVariants: {
       defaults: {
         color: 'primaryText',
-        fontFamily: 'Roboto-Regular',
       },
       title: {
         fontWeight: '800',

@@ -12,6 +12,7 @@ const SearchItem = (item: SearchResponseObject) => {
   const { navigate } = useNavigation<HomeScreenProps['navigation']>();
   return (
     <Pressable
+      backgroundColor="primaryBackground"
       paddingHorizontal="m"
       onPress={() => {
         navigate(HomeStackScreenList.TranslationScreen, {

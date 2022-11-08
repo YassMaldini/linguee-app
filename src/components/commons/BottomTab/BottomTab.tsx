@@ -1,12 +1,11 @@
 import Box from '../../designSystem/Box/Box';
-import Image from '../../designSystem/Image/Image';
-import LeftArrowIcon from '../../../../assets/images/ic_keyboard_arrow_left_black_36dp.png';
-import RightArrowIcon from '../../../../assets/images/ic_keyboard_arrow_right_black_36dp.png';
-import ClockIcon from '../../../../assets/images/ic_query_builder_black_36dp.png';
-import InfoIcon from '../../../../assets/images/ic_info_outline_black_36dp.png';
-import SettingsIcon from '../../../../assets/images/ic_settings_black_36dp.png';
-import ShareIcon from '../../../../assets/vectors/share.svg';
+import ExportIcon from '../../../../assets/vectors/export.svg';
 import { SvgIcon } from '../../designSystem/SvgIcon/SvgIcon';
+import LeftArrowIcon from '../../../../assets/vectors/left-arrow.svg';
+import RightArrowIcon from '../../../../assets/vectors/right-arrow.svg';
+import HistoryIcon from '../../../../assets/vectors/history.svg';
+import InfoIcon from '../../../../assets/vectors/info.svg';
+import SettingsIcon from '../../../../assets/vectors/settings.svg';
 import Pressable from '../../designSystem/Pressable/Pressable';
 import { useCallback, useContext } from 'react';
 import { HomeStackContext } from '../../navigation/HomeStack/HomeStack.context';
@@ -90,13 +89,19 @@ const BottomTab = () => {
       paddingHorizontal="mToL">
       <Box flexDirection="row" alignItems="center">
         <Pressable disabled={savedTranslations === null} onPress={onPressLeftArrow}>
-          <Image source={LeftArrowIcon} width={36} height={36} />
+          <SvgIcon icon={LeftArrowIcon} color="iconDefault" width={24} height={24} />
         </Pressable>
         <Pressable onPress={onPressHistory}>
-          <Image source={ClockIcon} width={28} height={28} />
+          <SvgIcon
+            icon={HistoryIcon}
+            color="iconDefault"
+            width={26}
+            height={26}
+            marginHorizontal="s"
+          />
         </Pressable>
         <Pressable disabled={savedTranslations === null} onPress={onPressRightArrow}>
-          <Image source={RightArrowIcon} width={36} height={36} />
+          <SvgIcon icon={RightArrowIcon} color="iconDefault" width={24} height={24} />
         </Pressable>
       </Box>
       <Pressable
@@ -106,22 +111,28 @@ const BottomTab = () => {
           bottom: 0.5,
         }}>
         <SvgIcon
-          icon={ShareIcon}
+          icon={ExportIcon}
           width={26}
           height={26}
           color={
             activeScreen === HomeStackScreenList.TranslationScreen ||
             activeScreen === HomeStackScreenList.HistoryTranslationScreen
-              ? 'gray3'
+              ? 'iconDefault'
               : 'iconDisabled'
           }
         />
       </Pressable>
       <Pressable onPress={() => onPressInfo()}>
-        <Image source={InfoIcon} width={28} height={28} />
+        <SvgIcon icon={InfoIcon} color="iconDefault" width={26} height={26} marginHorizontal="s" />
       </Pressable>
       <Pressable onPress={() => setSettingsModalVisible(!isSettingsModalVisible)}>
-        <Image source={SettingsIcon} width={28} height={28} />
+        <SvgIcon
+          icon={SettingsIcon}
+          color="iconDefault"
+          width={26}
+          height={26}
+          marginHorizontal="s"
+        />
       </Pressable>
     </Box>
   );

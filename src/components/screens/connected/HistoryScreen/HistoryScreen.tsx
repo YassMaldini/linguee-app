@@ -122,7 +122,7 @@ const HistoryScreen = () => {
               </Pressable>
             </Animated.View>
             <Box width={'100%'} backgroundColor="primaryBackground">
-              <Text>{item.title}</Text>
+              <Text fontSize={16}>{item.title}</Text>
             </Box>
           </Box>
         </Box>
@@ -132,11 +132,11 @@ const HistoryScreen = () => {
   );
 
   return (
-    <Box flex={1}>
+    <Box flex={1} backgroundColor="primaryBackground">
       <ScreenHeader
         showGoBackTouchable
         showGoBackLabel
-        goBackIconColor="primaryButton"
+        goBackIconColor="defaultButton"
         title="History"
         rightElement={<HeaderActionButtom />}
       />
@@ -157,7 +157,7 @@ const HistoryScreen = () => {
               })
             }>
             <Box marginHorizontal="m">
-              <Text>Delete</Text>
+              <Text color="white">Delete</Text>
             </Box>
           </Pressable>
         )}

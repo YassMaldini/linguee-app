@@ -2,8 +2,10 @@ import Box from '../../../designSystem/Box/Box';
 import Image from '../../../designSystem/Image/Image';
 import TextInput from '../../../designSystem/TextInput/TextInput';
 import { KeyboardAccessoryView } from 'react-native-keyboard-accessory';
-import LogoIcon from '../../../../../assets/images/logo_white.png';
-import SmallLogoIcon from '../../../../../assets/images/small_logo_white.png';
+import WhiteLogoIcon from '../../../../../assets/images/logo_white.png';
+import ColoredLogoIcon from '../../../../../assets/images/logo_colored.png';
+import SmallWhiteLogoIcon from '../../../../../assets/images/small_logo_white.png';
+import SmallColoredLogoIcon from '../../../../../assets/images/small_logo.png';
 import CrossIcon from '../../../../../assets/images/ic_highlight_remove_grey_800_18dp.png';
 import Text from '../../../designSystem/Text/Text';
 import { useTheme } from '@shopify/restyle';
@@ -31,10 +33,12 @@ import {
   clipboardEnabledSelector,
   languagePairSelector,
 } from '../../../../store/translation/translationReducerSelectors';
+import { darkModeSelector } from '../../../../store/main/mainReducerSelectors';
 
 const SearchHeader = () => {
   const theme = useTheme<Theme>();
   const textInputRef = useRef<RNTextInput>(null);
+  const isDarkMode = useSelector(darkModeSelector);
   const { activeScreen, setSearchResponse, navigation } = useContext(HomeStackContext);
   const bottomModalRef = useRef<BottomSheetModal>(null);
   const queryClient = useQueryClient();
@@ -53,7 +57,7 @@ const SearchHeader = () => {
     if (isCliboardEnabled) {
       (async () => {
         const copiedText = await fetchCopiedText();
-        if (copiedText !== '') {
+        if (copiedText !== '' && copiedText.split(' ').length < 3) {
           setValue('search', copiedText);
           mutate({ search: copiedText });
         }
@@ -97,7 +101,10 @@ const SearchHeader = () => {
 
   return (
     <KeyboardAccessoryView
-      style={{ backgroundColor: theme.colors.primaryBackground }}
+      style={{
+        backgroundColor: theme.colors.primaryBackground,
+        borderTopColor: theme.colors.primaryBackground,
+      }}
       alwaysVisible
       avoidKeyboard
       androidAdjustResize>
@@ -107,9 +114,17 @@ const SearchHeader = () => {
             <Box flexDirection="row" alignItems="center">
               <Box padding="sToM">
                 {isKeyboardVisible ? (
-                  <Image source={SmallLogoIcon} width={30} height={30} />
+                  <Image
+                    source={isDarkMode ? SmallWhiteLogoIcon : SmallColoredLogoIcon}
+                    width={30}
+                    height={30}
+                  />
                 ) : (
-                  <Image source={LogoIcon} width={75} height={30} />
+                  <Image
+                    source={isDarkMode ? WhiteLogoIcon : ColoredLogoIcon}
+                    width={75}
+                    height={30}
+                  />
                 )}
               </Box>
               <Box
@@ -128,6 +143,7 @@ const SearchHeader = () => {
                         onChange(text);
                         mutate({ search: text });
                       }}
+                      fontSize={16}
                       color="primaryText"
                       backgroundColor="highlightBackground"
                       selectTextOnFocus
@@ -144,7 +160,7 @@ const SearchHeader = () => {
                 )}
               </Box>
               <Pressable padding="sToM" onPress={openLanguagePairModal}>
-                <Text fontSize={16} color="secondaryText">
+                <Text fontSize={16} color="languagePickerButton">
                   {languagePair}
                 </Text>
               </Pressable>

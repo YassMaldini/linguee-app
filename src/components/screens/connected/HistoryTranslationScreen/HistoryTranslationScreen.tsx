@@ -45,28 +45,29 @@ const HistoryTranslationScreen = () => {
     const unsubscribe = navigation.addListener('focus', () => {
       setActiveScreen(HomeStackScreenList.HistoryTranslationScreen);
       setActiveTranslation(currentTranslation);
-      console.log('currentTranslation', currentTranslation);
     });
 
     return unsubscribe;
   }, [navigation, currentTranslation]);
 
   return (
-    <FlashList
-      data={currentTranslation?.main}
-      renderItem={({ item }) => {
-        return (
-          <Box flex={1} padding="m" backgroundColor="primaryButton">
-            <TranslationMainItem {...item.mainItem} />
-            {item.translatedItems && <TranslationTranslatedItem {...item.translatedItems} />}
-          </Box>
-        );
-      }}
-      ListEmptyComponent={<ActivityIndicator size="large" />}
-      estimatedItemSize={20}
-      onTouchStart={onTouchStart}
-      onTouchEnd={onTouchEnd}
-    />
+    <Box flex={1} backgroundColor="primaryBackground">
+      <FlashList
+        data={currentTranslation?.main}
+        renderItem={({ item }) => {
+          return (
+            <Box flex={1} padding="m">
+              <TranslationMainItem {...item.mainItem} />
+              {item.translatedItems && <TranslationTranslatedItem {...item.translatedItems} />}
+            </Box>
+          );
+        }}
+        ListEmptyComponent={<ActivityIndicator size="large" />}
+        estimatedItemSize={20}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+      />
+    </Box>
   );
 };
 

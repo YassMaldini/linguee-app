@@ -1,12 +1,18 @@
 import { DarkTheme, NavigationContainer } from '@react-navigation/native';
-import { useTheme } from '@shopify/restyle';
+import { ThemeProvider } from '@shopify/restyle';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useMemo } from 'react';
-import { Theme } from '../../utils/theme/theme';
+import getTheme from '../../utils/theme/theme';
 import RootStack from './RootStack/RootStack';
+import { useSelector } from 'react-redux';
+import { darkModeSelector } from '../../store/main/mainReducerSelectors';
+import { StatusBar } from 'expo-status-bar';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 const Navigation = (): JSX.Element => {
-  const theme = useTheme<Theme>();
+  const isDarkMode = useSelector(darkModeSelector);
+
+  const theme = useMemo(() => getTheme(isDarkMode), [isDarkMode]);
 
   const navigationTheme = useMemo(() => {
     return {
@@ -20,9 +26,14 @@ const Navigation = (): JSX.Element => {
 
   return (
     <NavigationContainer theme={navigationTheme}>
-      <SafeAreaProvider style={{ backgroundColor: theme.colors.primaryBackground }}>
-        <RootStack />
-      </SafeAreaProvider>
+      <StatusBar style={isDarkMode ? 'light' : 'dark'} />
+      <ThemeProvider {...{ theme }}>
+        <BottomSheetModalProvider>
+          <SafeAreaProvider style={{ backgroundColor: theme.colors.primaryBackground }}>
+            <RootStack />
+          </SafeAreaProvider>
+        </BottomSheetModalProvider>
+      </ThemeProvider>
     </NavigationContainer>
   );
 };

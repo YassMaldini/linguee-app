@@ -4,7 +4,7 @@ import { ChipColors, ChipColorsData, ChipPaddingData, ChipProps, ChipSizes } fro
 export const CHIP_COLORS = Object.freeze<ChipColorsData>({
   [ChipColors.Primary]: {
     regular: {
-      background: 'primaryButtonBackground',
+      background: 'defaultButtonBackground',
       text: 'white',
     },
     disabled: {

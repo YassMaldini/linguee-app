@@ -25,7 +25,7 @@ const HomeCarousel = () => {
   }, [screenWidth, currentScreenOrientation, Platform]);
 
   return (
-    <Box flex={1}>
+    <Box flex={1} backgroundColor="primaryBackground">
       <Box flexDirection="row" alignItems="center" justifyContent="center">
         {homeCarouselItemsList.map((item, index) => {
           const size = index === activeIndex ? 10 : 6;
@@ -35,7 +35,7 @@ const HomeCarousel = () => {
               height={size}
               borderRadius="m"
               marginRight="s"
-              backgroundColor="highlightBackground"
+              backgroundColor="carouselPagination"
               key={index}
             />
           );
