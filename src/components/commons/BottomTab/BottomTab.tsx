@@ -13,8 +13,12 @@ import { HomeStackScreenList } from '../../navigation/HomeStack/HomeStack.types'
 import { useSelector } from 'react-redux';
 import { savedTranslationsSelector } from '../../../store/translation/translationReducerSelectors';
 import { Share } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { capitalizeFirstLetter } from '../../../utils/string/capitalizeFirstLetter';
 
 const BottomTab = () => {
+  const { t } = useTranslation(['languages', 'translations']);
+
   const {
     navigation,
     activeScreen,
@@ -61,8 +65,17 @@ const BottomTab = () => {
 
   const onPressShare = useCallback(async () => {
     try {
+      const language = capitalizeFirstLetter(
+        t(`language.${activeTranslation?.language.target}`, { ns: 'languages' })
+      );
+
       const result = await Share.share({
-        message: `https://linguee.com${activeTranslation?.url}`,
+        message: t('item.share.message', {
+          ns: 'translations',
+          language,
+          word: activeTranslation?.title,
+          link: `https://linguee.com${activeTranslation?.url}`,
+        }),
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
@@ -76,7 +89,7 @@ const BottomTab = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [activeTranslation]);
+  }, [activeTranslation, t]);
 
   return (
     <Box

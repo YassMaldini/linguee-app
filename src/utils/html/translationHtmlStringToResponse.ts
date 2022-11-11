@@ -21,6 +21,11 @@ export const translationHtmlStringToResponse = (html: string, url: string): Tran
 
   const title = root.querySelector('title')?.innerText.split(' - ')[0] || '';
 
+  const sourceLang =
+    root.querySelector('div#data')?.getAttribute('data-sourcelang')?.toLowerCase() || '';
+  const targetLang =
+    root.querySelector('div#data')?.getAttribute('data-targetlang')?.toLowerCase() || '';
+
   const exact = root.querySelector('.exact');
 
   const exact_lemma_items = (exact as HTMLElement).querySelectorAll('.lemma');
@@ -38,14 +43,14 @@ export const translationHtmlStringToResponse = (html: string, url: string): Tran
     const translation = translation_lines?.querySelectorAll('.translation');
 
     const translatedItems: TranslationResponseTranslatedItem[] = [];
-
-    let main_translation: TranslationTranslatedItemMain | undefined;
-
     const less_common_translations: TranslationTranslatedItemMain[] = [];
-    const example_translations = [];
 
     if (translation) {
       for (const translation_line of translation) {
+        let main_translation: TranslationTranslatedItemMain | undefined;
+
+        const example_translations = [];
+
         const main_translation_element = translation_line.querySelector('h3.translation_desc');
         if (main_translation_element) {
           const main_translation_text =
@@ -96,15 +101,12 @@ export const translationHtmlStringToResponse = (html: string, url: string): Tran
             });
           }
         }
+        translatedItems.push({
+          main: main_translation && (main_translation as TranslationTranslatedItemMain),
+          examples: example_translations,
+        });
       }
     }
-
-    translatedItems.push({
-      main: main_translation && (main_translation as TranslationTranslatedItemMain),
-      lessCommon: less_common_translations,
-      examples: example_translations,
-    });
-
     main_response.push({
       mainItem: {
         text: decodeHTMLEntities(main_item_text),
@@ -113,6 +115,7 @@ export const translationHtmlStringToResponse = (html: string, url: string): Tran
         context: main_item_context && decodeHTMLEntities(main_item_context),
       },
       translatedItems,
+      lessCommon: less_common_translations,
     });
   }
 
@@ -180,6 +183,10 @@ export const translationHtmlStringToResponse = (html: string, url: string): Tran
   const response: TranslationResponse = {
     title,
     url,
+    language: {
+      source: sourceLang,
+      target: targetLang,
+    },
     main: main_response,
     examples: examples_response,
   };

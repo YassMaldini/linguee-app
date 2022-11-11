@@ -12,6 +12,10 @@ const useTranslation = ({ url, wt }: UseTranslationOptions) => {
     wt,
   };
 
+  // const options = {
+  //   source: 'auto'
+  // }
+
   return useQuery<TranslationResponse, Error>(
     [USE_TRANSLATION_QUERY_KEY],
     () => queryTranslation({ url, options }),

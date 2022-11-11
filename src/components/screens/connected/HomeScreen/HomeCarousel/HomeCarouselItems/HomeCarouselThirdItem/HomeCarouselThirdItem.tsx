@@ -8,8 +8,10 @@ import { useState } from 'react';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../../../../../utils/theme/theme';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useTranslation } from 'react-i18next';
 
 const HomeCarouselThirdItem = () => {
+  const { t } = useTranslation('carousel', { keyPrefix: 'third' });
   const theme = useTheme<Theme>();
   const [height, setHeight] = useState<number>(Dimensions.get('window').height);
 
@@ -25,35 +27,25 @@ const HomeCarouselThirdItem = () => {
         }}>
         <Box padding="s" borderBottomWidth={2} borderBottomColor="highlightBackground">
           <Text textAlign="center" fontSize={20}>
-            The Translation Search Engine
+            {t('title')}
           </Text>
         </Box>
         <Box paddingVertical="m" alignItems="center">
-          <Text>
-            Our translation search engine scours over one billion translated texts in order to find
-            the exact translation you are looking for. You can also find contextual translations of
-            rarely used or slightly longer phrases.
-          </Text>
+          <Text>{t('paragraphs.first')}</Text>
           <Image
             source={ExamplesImage}
             width={exampleImageWidth}
             height={exampleImageWidth * 1.3}
             marginVertical="l"
           />
-          <Text>
-            If we were to print out all of the sources used while searching for a translation, there
-            would be enough paper to encircle the globe.{' '}
-          </Text>
+          <Text>{t('paragraphs.second')} </Text>
           <Image
             source={WorldImage}
             width={exampleImageWidth}
             height={exampleImageWidth / 2}
             marginVertical="l"
           />
-          <Text>
-            The sentences displayed are not part of the Linguee dictionary and were translated by
-            other people on the Internet. It is therefore a good idea to check the results.
-          </Text>
+          <Text>{t('paragraphs.third')}</Text>
         </Box>
       </Box>
     </ScrollView>

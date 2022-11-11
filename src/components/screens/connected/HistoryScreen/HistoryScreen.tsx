@@ -18,9 +18,11 @@ import { useDispatch } from 'react-redux';
 import { removeSavedTranslation } from './HistoryScreen.actions';
 import { HomeStackContext } from '../../../navigation/HomeStack/HomeStack.context';
 import { HomeStackScreenList } from '../../../navigation/HomeStack/HomeStack.types';
+import { useTranslation } from 'react-i18next';
 
 const HistoryScreen = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation('translations', { keyPrefix: 'history' });
   const navigation = useNavigation<HistoryScreenProps['navigation']>();
 
   const { setCurrentHistoryIndex, setActiveScreen } = useContext(HomeStackContext);
@@ -74,17 +76,17 @@ const HistoryScreen = () => {
     if (areAllRemoveButtonsVisible) {
       return (
         <Button color={ButtonColors.HighlightedText} onPress={fadeOut} isBold={false}>
-          Done
+          {t('header.button.done')}
         </Button>
       );
     } else {
       return (
         <Button color={ButtonColors.HighlightedText} onPress={fadeIn} isBold={false}>
-          Edit
+          {t('header.button.edit')}
         </Button>
       );
     }
-  }, [areAllRemoveButtonsVisible, fadeIn, fadeOut]);
+  }, [areAllRemoveButtonsVisible, fadeIn, fadeOut, t]);
 
   const navigateToTranslation = useCallback(
     (index: number) => {
@@ -137,7 +139,7 @@ const HistoryScreen = () => {
         showGoBackTouchable
         showGoBackLabel
         goBackIconColor="defaultButton"
-        title="History"
+        title={t('header.title')}
         rightElement={<HeaderActionButtom />}
       />
       <SwipeListView

@@ -9,8 +9,10 @@ import { HomeStackContext } from '../../../../../../navigation/HomeStack/HomeSta
 import { Orientation } from 'expo-screen-orientation';
 import { useSelector } from 'react-redux';
 import { darkModeSelector } from '../../../../../../../store/main/mainReducerSelectors';
+import { useTranslation } from 'react-i18next';
 
 const HomeCarouselFirstItem = () => {
+  const { t } = useTranslation('carousel', { keyPrefix: 'first' });
   const isDarkMode = useSelector(darkModeSelector);
   const { currentScreenOrientation } = useContext(HomeStackContext);
   const width = 200;
@@ -36,7 +38,7 @@ const HomeCarouselFirstItem = () => {
           marginBottom="sToM"
         />
         <Text textAlign="center" fontSize={16}>
-          The New Dictionary
+          {t('subtitle')}
         </Text>
       </Box>
       <Box
@@ -46,10 +48,10 @@ const HomeCarouselFirstItem = () => {
         borderTopWidth={1}
         borderTopColor="highlightBackground">
         <Text textAlign="center" fontSize={16}>
-          For further information
+          {t('swipe.further')}
         </Text>
         <Text textAlign="center" fontSize={16}>
-          slide to the left.
+          {t('swipe.slide')}
         </Text>
         <Image
           source={SwipeImage}

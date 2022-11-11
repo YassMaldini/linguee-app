@@ -49,7 +49,7 @@ const HomeScreen = () => {
         ListEmptyComponent={<HomeCarousel />}
         estimatedItemSize={20}
         keyboardShouldPersistTaps="handled"
-        keyboardDismissMode="interactive"
+        keyboardDismissMode="on-drag"
       />
     </Box>
   );

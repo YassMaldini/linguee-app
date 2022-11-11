@@ -1,0 +1,26 @@
+{
+  "first": {
+    "subtitle": "The New Dictionary",
+    "swipe": {
+      "further": "For further information",
+      "slide": "slide to the left."
+    }
+  },
+  "second": {
+    "title": "The Dictionary",
+    "paragraphs": {
+      "first": "Linguee's editorial dictionary can be found at the very top of the search results page.",
+      "second": "Several new features will help you find the desired information as quickly as possible. For example, autocompletion allows the most important translations to be shown after entering only the first few letters of a word:",
+      "third": "Tap on a term in the results to obtain further information:",
+      "forth": "We are fully committed to creating the largest and most reliable modern-day dictionary in the world. Over 400 professional editors are currently working on the development of our dictionaries."
+    }
+  },
+  "third": {
+    "title": "The Translation Search Engine",
+    "paragraphs": {
+      "first": "Our translation search engine scours over one billion translated texts in order to find the exact translation you are looking for. You can also find contextual translations of rarely used or slightly longer phrases.",
+      "second": "If we were to print out all of the sources used while searching for a translation, there would be enough paper to encircle the globe.",
+      "third": "The sentences displayed are not part of the Linguee dictionary and were translated by other people on the Internet. It is therefore a good idea to check the results."
+    }
+  }
+}

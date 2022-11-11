@@ -1,0 +1,19 @@
+{
+  "history": {
+    "header": {
+      "title": "History",
+      "button": {
+        "edit": "Edit",
+        "done": "Done"
+      }
+    }
+  },
+  "item": {
+    "translated": {
+      "lessCommon": "Less common :"
+    },
+    "share": {
+      "message": "{{language}} translations of {{word}} in the Linguee dictionary: \n\n{{link}}"
+    }
+  }
+}

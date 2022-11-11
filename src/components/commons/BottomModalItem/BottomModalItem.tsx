@@ -4,10 +4,14 @@ import { BottomModalItemProps } from './BottomModalItem.types';
 
 const BottomModalItem = ({ children, ...rest }: BottomModalItemProps) => {
   return (
-    <Pressable padding="sToM" {...rest}>
-      <Text alignSelf="center" fontSize={18}>
-        {children}
-      </Text>
+    <Pressable alignItems="center" padding="sToM" {...rest}>
+      {typeof children === 'string' ? (
+        <Text alignSelf="center" fontSize={18}>
+          {children}
+        </Text>
+      ) : (
+        children
+      )}
     </Pressable>
   );
 };

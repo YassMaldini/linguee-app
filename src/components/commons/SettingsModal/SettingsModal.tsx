@@ -1,4 +1,5 @@
 import { useContext, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Alert, Dimensions, Modal, TouchableWithoutFeedback } from 'react-native';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -13,6 +14,7 @@ import SettingsModalItem from './SettingsModalItem/SettingsModalItem';
 import SettingsModalTitle from './SettingsModalTitle/SettingsModalTitle';
 
 const SettingsModal = () => {
+  const { t } = useTranslation('settings', { keyPrefix: 'modal.settings' });
   const dispatch = useDispatch();
   const { isSettingsModalVisible, setSettingsModalVisible, currentScreenOrientation } =
     useContext(HomeStackContext);
@@ -43,12 +45,7 @@ const SettingsModal = () => {
         onPress={() => {
           setSettingsModalVisible(false);
         }}>
-        <Box
-          flex={1}
-          // position="relative"
-          // bottom={50}
-          alignItems="center"
-          justifyContent="center">
+        <Box flex={1} alignItems="center" justifyContent="center">
           <TouchableWithoutFeedback onPress={(e) => e.preventDefault()}>
             <Box
               width={MODAL_SIZE}
@@ -61,14 +58,14 @@ const SettingsModal = () => {
                 borderWidth: 0.5,
                 borderColor: 'gray6',
               })}>
-              <SettingsModalTitle title="Settings" />
+              <SettingsModalTitle title={t('title')} />
               <SettingsModalItem
-                label="Look up clipboard content"
+                label={t('list.clipboard')}
                 toggleSwitch={clipboardSwitch}
                 isEnabled={isCliboardEnabled}
               />
               <SettingsModalItem
-                label="Enable dark mode"
+                label={t('list.darkMode')}
                 toggleSwitch={darkModeSwitch}
                 isEnabled={isDarkMode}
               />

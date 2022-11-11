@@ -10,8 +10,10 @@ import { useState } from 'react';
 import { useTheme } from '@shopify/restyle';
 import { Theme } from '../../../../../../../utils/theme/theme';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useTranslation } from 'react-i18next';
 
 const HomeCarouselSecondItem = () => {
+  const { t } = useTranslation('carousel', { keyPrefix: 'second' });
   const theme = useTheme<Theme>();
   const [height, setHeight] = useState<number>(Dimensions.get('window').height);
 
@@ -28,42 +30,32 @@ const HomeCarouselSecondItem = () => {
         }}>
         <Box padding="s" borderBottomWidth={2} borderBottomColor="highlightBackground">
           <Text textAlign="center" fontSize={20}>
-            The Dictionary
+            {t('title')}
           </Text>
         </Box>
         <Box paddingVertical="m" alignItems="center">
-          <Text>
-            Linguee's editorial dictionary can be found at the very top of the search results page.
-          </Text>
+          <Text>{t('paragraphs.first')}</Text>
           <Image
             source={DictionaryImage}
             width={dictionaryImageWidth}
             height={dictionaryImageWidth * 1.4}
             marginVertical="l"
           />
-          <Text>
-            Several new features will help you find the desired information as quickly as possible.
-            For example, autocompletion allows the most important translations to be shown after
-            entering only the first few letters of a word:
-          </Text>
+          <Text>{t('paragraphs.second')}</Text>
           <Image
             source={AutocompletionImage}
             width={autocompletionImageWidth}
             height={autocompletionImageWidth * 1.66}
             marginVertical="l"
           />
-          <Text>Tap on a term in the results to obtain further information:</Text>
+          <Text>{t('paragraphs.third')}</Text>
           <Image
             source={ChosenImage}
             width={autocompletionImageWidth}
             height={autocompletionImageWidth * 1.66}
             marginVertical="l"
           />
-          <Text>
-            We are fully committed to creating the largest and most reliable modern-day dictionary
-            in the world. Over 400 professional editors are currently working on the development of
-            our dictionaries.{' '}
-          </Text>
+          <Text>{t('paragraphs.forth')} </Text>
           <Image
             source={EditorsImage}
             width={autocompletionImageWidth}

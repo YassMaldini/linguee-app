@@ -1,0 +1,17 @@
+{
+  "language": {
+    "en": "english",
+    "fr": "french",
+    "es": "spanish",
+    "de": "german"
+  },
+  "pair": {
+    "EN-FR": ["english", "french"],
+    "ES-FR": ["spanish", "french"],
+    "DE-EN": ["german", "english"]
+  },
+  "extension": {
+    "en": ".com",
+    "fr": ".fr"
+  }
+}

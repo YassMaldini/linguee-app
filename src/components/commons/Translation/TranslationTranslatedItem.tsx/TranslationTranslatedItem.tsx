@@ -6,7 +6,7 @@ const TranslationTranslatedItem = (items: TranslationResponseTranslatedItem[]) =
   return (
     <Box>
       {Object.values(items).map((item, index) => (
-        <Box marginLeft="l" marginBottom="l" key={index}>
+        <Box marginLeft="l" marginBottom="m" key={index}>
           {item.main && (
             <Box flexDirection="row" alignItems="flex-end">
               <Text marginRight="sToM" fontSize={18}>
@@ -37,27 +37,6 @@ const TranslationTranslatedItem = (items: TranslationResponseTranslatedItem[]) =
                   </Box>
                 </Box>
               ))}
-            </Box>
-          )}
-          {item.lessCommon.length > 0 && (
-            <Box>
-              <Text fontSize={15} color="secondaryText" fontFamily="Roboto-Italic">
-                Less common :
-              </Text>
-              <Box flexDirection="row" flexWrap="wrap" marginTop="xs">
-                {item.lessCommon.map((lessCommonItem, index) => (
-                  <Box flexDirection="row" alignItems="flex-end" marginRight="l" key={index}>
-                    <Text fontSize={13}>{lessCommonItem.text}</Text>
-                    <Text
-                      marginLeft="s"
-                      fontSize={12}
-                      color="secondaryText"
-                      fontFamily="Roboto-Italic">
-                      {lessCommonItem.type}
-                    </Text>
-                  </Box>
-                ))}
-              </Box>
             </Box>
           )}
         </Box>

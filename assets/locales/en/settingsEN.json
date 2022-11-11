@@ -1,0 +1,11 @@
+{
+  "modal": {
+    "settings": {
+      "title": "Settings",
+      "list": {
+        "clipboard": "Look up clipboard content",
+        "darkMode": "Enable dark mode"
+      }
+    }
+  }
+}

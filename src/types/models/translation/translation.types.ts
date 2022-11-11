@@ -1,6 +1,7 @@
 export interface TranslationResponse {
   title: string;
   url: string;
+  language: TranslationResponseLanguage;
   main: TranslationResponseMain[];
   examples: TranslationResponseExample[];
 }
@@ -8,6 +9,12 @@ export interface TranslationResponse {
 export interface TranslationResponseMain {
   mainItem: TranslationResponseMainItem;
   translatedItems: TranslationResponseTranslatedItem[];
+  lessCommon?: TranslationTranslatedItemMain[];
+}
+
+export interface TranslationResponseLanguage {
+  source: string;
+  target: string;
 }
 
 export interface TranslationResponseMainItem {
@@ -19,7 +26,6 @@ export interface TranslationResponseMainItem {
 
 export interface TranslationResponseTranslatedItem {
   main?: TranslationTranslatedItemMain;
-  lessCommon: TranslationTranslatedItemMain[];
   examples: TranslationTranslatedItemExample[];
 }
 

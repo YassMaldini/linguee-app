@@ -1,18 +1,20 @@
-import authenticationFR from '../../../assets/locales/fr/authenticationFR.json';
-import authenticationEN from '../../../assets/locales/en/authenticationEN.json';
+import carouselEN from '../../../assets/locales/en/carouselEN.json';
+import settingsEN from '../../../assets/locales/en/settingsEN.json';
+import languagesEN from '../../../assets/locales/en/languagesEN.json';
+import translationsEN from '../../../assets/locales/en/translationsEN.json';
 
 const TRANSLATIONS = Object.freeze({
   en: {
-    translation: {
-      test: "Here's a test !",
-    },
-    authentication: authenticationEN,
+    languages: languagesEN,
+    carousel: carouselEN,
+    settings: settingsEN,
+    translations: translationsEN,
   },
   fr: {
-    translation: {
-      test: 'Ceci est un test !',
-    },
-    authentication: authenticationFR,
+    languages: languagesEN,
+    carousel: carouselEN,
+    settings: settingsEN,
+    translations: translationsEN,
   },
 });
 
