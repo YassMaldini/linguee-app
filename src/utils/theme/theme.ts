@@ -2,7 +2,7 @@ import { createTheme } from '@shopify/restyle';
 import { DARK_COLORS } from './colors/dark';
 import { LIGHT_COLORS } from './colors/light';
 
-const getTheme = (darkMode: boolean) =>
+const getTheme = (darkMode?: boolean) =>
   createTheme({
     colors: darkMode ? DARK_COLORS : LIGHT_COLORS,
     spacing: {
