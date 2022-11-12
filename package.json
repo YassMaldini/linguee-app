@@ -7,12 +7,13 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "prepare": "husky install",
+    "test": "jest",
     "test:staged": "jest --bail --findRelatedTests"
   },
   "lint-staged": {
     "*.{json,js,jsx,ts,tsx,css,scss,md}": "prettier --config .prettierrc --write",
     "*.{ts,tsx,js,jsx,json}": "eslint . --ext .ts,.tsx,.js,.jsx,.json --fix",
-    "*.test.{ts,tsx,js,jsx}": "npm run test:staged"
+    "*.test.{ts,tsx,js,jsx}": "npm run test"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^4.4.5",
