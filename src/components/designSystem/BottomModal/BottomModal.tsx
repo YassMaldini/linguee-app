@@ -45,7 +45,7 @@ const BottomModal = forwardRef<BottomSheetModal, BottomModalProps>(({ children }
         backgroundColor: theme.colors.secondaryText,
         width: 40,
       }}>
-      <BottomSheetView onLayout={handleContentLayout}>
+      <BottomSheetView testID="bottomSheet" onLayout={handleContentLayout}>
         <Box
           flex={1}
           backgroundColor="highlightBackground"

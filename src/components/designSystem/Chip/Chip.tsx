@@ -42,6 +42,7 @@ const Content = ({
       {!isChildrenString && children}
       {isChildrenString && (
         <Text
+          testID="chipText"
           fontSize={14}
           textAlign="center"
           fontFamily={isBold ? 'Roboto-Bold' : 'Roboto-Regular'}
@@ -82,6 +83,7 @@ const Chip = ({
 
   return (
     <Component
+      testID="chip"
       backgroundColor={buttonBackgroundColor}
       paddingHorizontal={BUTTON_HORIZONTAL_PADDING[size]}
       paddingVertical={BUTTON_VERTICAL_PADDING[size]}
