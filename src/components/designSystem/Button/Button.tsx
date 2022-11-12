@@ -41,16 +41,17 @@ const Content = ({
   if (loading) {
     return (
       <Box paddingVertical="m">
-        <ActivityIndicator size={24} color="#fff" />
+        <ActivityIndicator testID="loading" size={24} color="#fff" />
       </Box>
     );
   }
 
   return (
     <Box>
-      {!isChildrenString && children}
+      {!isChildrenString && <Box testID="buttonChildren">{children}</Box>}
       {isChildrenString && (
         <Text
+          testID="buttonText"
           fontSize={16}
           textAlign="center"
           fontFamily={isBold ? 'Roboto-Bold' : 'Roboto-Regular'}
@@ -92,6 +93,7 @@ const Button = ({
 
   return (
     <Component
+      testID="button"
       backgroundColor={buttonBackgroundColor}
       paddingHorizontal={BUTTON_HORIZONTAL_PADDING[size]}
       paddingVertical={BUTTON_VERTICAL_PADDING[size]}

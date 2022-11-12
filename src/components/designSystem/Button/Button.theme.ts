@@ -10,7 +10,7 @@ import {
 export const BUTTONS_COLORS = Object.freeze<ButtonColorsData>({
   [ButtonColors.Primary]: {
     regular: {
-      background: 'defaultButtonBackground',
+      background: 'defaultButton',
       text: 'white',
     },
     disabled: {
