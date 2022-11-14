@@ -12,7 +12,7 @@
   },
   "lint-staged": {
     "*.{json,js,jsx,ts,tsx,css,scss,md}": "prettier --config .prettierrc --write",
-    "*.{ts,tsx,js,jsx,json}": "eslint . --ext .ts,.tsx,.js,.jsx,.json --fix",
+    "*.{ts,tsx,js,jsx}": "eslint . --ext .ts,.tsx,.js,.jsx,.json --fix",
     "*.test.{ts,tsx,js,jsx}": "npm run test"
   },
   "dependencies": {
@@ -25,12 +25,14 @@
     "@shopify/flash-list": "1.3.1",
     "@shopify/restyle": "^2.1.0",
     "apisauce": "^2.1.6",
-    "expo": "~47.0.3",
+    "expo": "^47.0.0",
     "expo-app-loading": "~2.1.1",
     "expo-clipboard": "~4.0.1",
     "expo-dev-client": "~2.0.0",
     "expo-font": "~11.0.1",
+    "expo-modules-core": "^1.0.2",
     "expo-screen-orientation": "~5.0.1",
+    "expo-splash-screen": "~0.17.4",
     "expo-status-bar": "~1.4.2",
     "i18next": "^22.0.2",
     "node-html-parser": "^6.1.1",
@@ -54,8 +56,7 @@
     "redux": "^4.2.0",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
-    "yup": "^0.32.11",
-    "expo-splash-screen": "~0.17.4"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
@@ -73,6 +74,7 @@
     "@types/react-test-renderer": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
+    "eslint": "^8.27.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-react": "^1.1.7",
     "eslint-plugin-jest": "^27.1.3",
