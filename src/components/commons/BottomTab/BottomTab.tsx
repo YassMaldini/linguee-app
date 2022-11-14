@@ -77,14 +77,16 @@ const BottomTab = () => {
           link: `https://linguee.com${activeTranslation?.url}`,
         }),
       });
-      if (result.action === Share.sharedAction) {
-        if (result.activityType) {
-          console.log('shared with activity type of result.activityType', result.activityType);
-        } else {
-          console.log('shared');
+      if (result) {
+        if (result.action === Share.sharedAction) {
+          if (result.activityType) {
+            console.log('shared with activity type of result.activityType', result.activityType);
+          } else {
+            console.log('shared');
+          }
+        } else if (result.action === Share.dismissedAction) {
+          console.log('dismissed');
         }
-      } else if (result.action === Share.dismissedAction) {
-        console.log('dismissed');
       }
     } catch (error) {
       console.log(error);
@@ -93,7 +95,7 @@ const BottomTab = () => {
 
   return (
     <Box
-      testID='bottomTab'
+      testID="bottomTab"
       backgroundColor="secondaryBackground"
       height={50}
       flexDirection="row"
@@ -105,7 +107,7 @@ const BottomTab = () => {
         <Pressable disabled={savedTranslations === null} onPress={onPressLeftArrow}>
           <SvgIcon icon={LeftArrowIcon} color="iconDefault" width={24} height={24} />
         </Pressable>
-        <Pressable testID='historyIcon' onPress={onPressHistory}>
+        <Pressable testID="historyIcon" onPress={onPressHistory}>
           <SvgIcon
             icon={HistoryIcon}
             color="iconDefault"
@@ -119,7 +121,7 @@ const BottomTab = () => {
         </Pressable>
       </Box>
       <Pressable
-        testID='shareIcon'
+        testID="shareIcon"
         onPress={onPressShare}
         style={{
           position: 'relative',
@@ -137,10 +139,12 @@ const BottomTab = () => {
           }
         />
       </Pressable>
-      <Pressable testID='infoIcon' onPress={() => onPressInfo()}>
+      <Pressable testID="infoIcon" onPress={() => onPressInfo()}>
         <SvgIcon icon={InfoIcon} color="iconDefault" width={26} height={26} marginHorizontal="s" />
       </Pressable>
-      <Pressable testID='settingsIcon' onPress={() => setSettingsModalVisible(!isSettingsModalVisible)}>
+      <Pressable
+        testID="settingsIcon"
+        onPress={() => setSettingsModalVisible(!isSettingsModalVisible)}>
         <SvgIcon
           icon={SettingsIcon}
           color="iconDefault"

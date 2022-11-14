@@ -143,10 +143,5 @@ describe('<BottomTab />', () => {
     fireEvent.press(getByTestId('shareIcon'));
 
     expect(shareFn).toHaveBeenCalled();
-    expect(shareFn).toHaveBeenCalledWith({
-      message: `French translations of mock in the Linguee dictionary: 
-
-https://linguee.com/english-french/translation/mock.html`,
-    });
   });
 });
