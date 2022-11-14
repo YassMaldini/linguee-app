@@ -93,6 +93,7 @@ const BottomTab = () => {
 
   return (
     <Box
+      testID='bottomTab'
       backgroundColor="secondaryBackground"
       height={50}
       flexDirection="row"
@@ -104,7 +105,7 @@ const BottomTab = () => {
         <Pressable disabled={savedTranslations === null} onPress={onPressLeftArrow}>
           <SvgIcon icon={LeftArrowIcon} color="iconDefault" width={24} height={24} />
         </Pressable>
-        <Pressable onPress={onPressHistory}>
+        <Pressable testID='historyIcon' onPress={onPressHistory}>
           <SvgIcon
             icon={HistoryIcon}
             color="iconDefault"
@@ -118,6 +119,7 @@ const BottomTab = () => {
         </Pressable>
       </Box>
       <Pressable
+        testID='shareIcon'
         onPress={onPressShare}
         style={{
           position: 'relative',
@@ -135,10 +137,10 @@ const BottomTab = () => {
           }
         />
       </Pressable>
-      <Pressable onPress={() => onPressInfo()}>
+      <Pressable testID='infoIcon' onPress={() => onPressInfo()}>
         <SvgIcon icon={InfoIcon} color="iconDefault" width={26} height={26} marginHorizontal="s" />
       </Pressable>
-      <Pressable onPress={() => setSettingsModalVisible(!isSettingsModalVisible)}>
+      <Pressable testID='settingsIcon' onPress={() => setSettingsModalVisible(!isSettingsModalVisible)}>
         <SvgIcon
           icon={SettingsIcon}
           color="iconDefault"
