@@ -12,6 +12,7 @@ const SearchItem = (item: SearchResponseObject) => {
   const { navigate } = useNavigation<HomeScreenProps['navigation']>();
   return (
     <Pressable
+      testID="searchItem"
       backgroundColor="primaryBackground"
       paddingHorizontal="m"
       onPress={() => {
@@ -30,10 +31,11 @@ const SearchItem = (item: SearchResponseObject) => {
         borderBottomColor="highlightBackground">
         <Box flex={1}>
           <Box flexDirection="row" alignItems="flex-end">
-            <Text color="highlightedText" fontSize={17}>
+            <Text testID="searchItemText" color="highlightedText" fontSize={17}>
               {item.mainItem.text}
             </Text>
             <Text
+              testID="searchItemType"
               marginLeft="s"
               fontSize={12}
               lineHeight={20}
@@ -46,10 +48,20 @@ const SearchItem = (item: SearchResponseObject) => {
             {item.translationItems?.map(
               (translationItem, index) =>
                 index < 3 && (
-                  <Box flexDirection="row" marginRight="m" key={index}>
-                    <Text fontSize={12}>{translationItem.text}</Text>
+                  <Box
+                    testID="searchItemTranslation"
+                    flexDirection="row"
+                    marginRight="m"
+                    key={index}>
+                    <Text testID="searchItemTranslationText" fontSize={12}>
+                      {translationItem.text}
+                    </Text>
                     {translationItem.type && (
-                      <Text marginLeft="s" color="secondaryText" fontFamily="Roboto-Italic">
+                      <Text
+                        testID="searchItemTranslationType"
+                        marginLeft="s"
+                        color="secondaryText"
+                        fontFamily="Roboto-Italic">
                         {translationItem.type}
                       </Text>
                     )}

@@ -28,6 +28,8 @@ const HomeScreen = () => {
 
   const { searchResponse } = useContext(HomeStackContext);
 
+  useEffect(() => console.log('searchResponse', searchResponse), [searchResponse]);
+
   const renderItem = useCallback<ListRenderItem<SearchResponseObject>>(
     ({ item }) => <SearchItem {...item} />,
     [searchResponse]
