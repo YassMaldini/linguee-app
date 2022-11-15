@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "linguee-app",
+    "name": "Linguee",
     "slug": "linguee-app",
     "version": "1.0.0",
     "orientation": "default",
@@ -45,7 +45,8 @@
             "buildToolsVersion": "31.0.0"
           }
         }
-      ]
+      ],
+      ["@config-plugins/detox"]
     ]
   }
 }

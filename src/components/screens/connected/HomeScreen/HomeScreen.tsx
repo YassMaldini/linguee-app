@@ -44,7 +44,7 @@ const HomeScreen = () => {
   );
 
   return (
-    <Box flex={1} backgroundColor="defaultButton">
+    <Box testID="home" flex={1} backgroundColor="defaultButton">
       <CallbackFlashList
         data={searchResponse}
         {...{ renderItem }}

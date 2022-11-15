@@ -134,7 +134,7 @@ const HistoryScreen = () => {
   );
 
   return (
-    <Box flex={1} backgroundColor="primaryBackground">
+    <Box testID="historyScreen" flex={1} backgroundColor="primaryBackground">
       <ScreenHeader
         showGoBackTouchable
         showGoBackLabel
@@ -143,6 +143,7 @@ const HistoryScreen = () => {
         rightElement={<HeaderActionButtom />}
       />
       <SwipeListView
+        testID="historySwipeList"
         data={savedTranslations}
         {...{ renderItem }}
         renderHiddenItem={({ item }) => (
