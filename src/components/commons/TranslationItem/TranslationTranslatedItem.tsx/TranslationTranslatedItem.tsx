@@ -4,15 +4,19 @@ import Text from '../../../designSystem/Text/Text';
 
 const TranslationTranslatedItem = (items: TranslationResponseTranslatedItem[]) => {
   return (
-    <Box>
+    <Box testID="translationTranslatedItem">
       {Object.values(items).map((item, index) => (
         <Box marginLeft="l" marginBottom="m" key={index}>
           {item.main && (
             <Box flexDirection="row" alignItems="flex-end">
-              <Text marginRight="sToM" fontSize={18}>
+              <Text testID="translationTranslatedItemText" marginRight="sToM" fontSize={18}>
                 {item.main.text}
               </Text>
-              <Text color="secondaryText" fontFamily="Roboto-Italic" lineHeight={22}>
+              <Text
+                testID="translationTranslatedItemType"
+                color="secondaryText"
+                fontFamily="Roboto-Italic"
+                lineHeight={22}>
                 {item.main.type}
               </Text>
             </Box>
@@ -21,6 +25,7 @@ const TranslationTranslatedItem = (items: TranslationResponseTranslatedItem[]) =
             <Box marginBottom="m">
               {item.examples.map((example, index) => (
                 <Box
+                  testID="translationTranslatedExample"
                   marginLeft="l"
                   marginTop="s"
                   flexDirection="row"
@@ -28,12 +33,17 @@ const TranslationTranslatedItem = (items: TranslationResponseTranslatedItem[]) =
                   justifyContent="space-between"
                   key={index}>
                   <Box flex={2} marginRight="sToM">
-                    <Text fontSize={13} color="highlightedText">
+                    <Text
+                      testID="translationTranslatedExampleOriginal"
+                      fontSize={13}
+                      color="highlightedText">
                       {example.original}
                     </Text>
                   </Box>
                   <Box flex={2}>
-                    <Text fontSize={13}>{example.translation}</Text>
+                    <Text testID="translationTranslatedExampleTranslation" fontSize={13}>
+                      {example.translation}
+                    </Text>
                   </Box>
                 </Box>
               ))}

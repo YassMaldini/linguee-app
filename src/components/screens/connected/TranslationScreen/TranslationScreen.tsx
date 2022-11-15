@@ -6,9 +6,7 @@ import { useSelector } from 'react-redux';
 import useTranslation from '../../../../hooks/useTranslation/useTranslation';
 import { saveTranslation } from '../../../../store/translation/translation/translationActions';
 import { savedTranslationsSelector } from '../../../../store/translation/translationReducerSelectors';
-import TranslationLessCommonItem from '../../../commons/Translation/TranslationLessCommonItem/TranslationLessCommonItem';
-import TranslationMainItem from '../../../commons/Translation/TranslationMainItem/TranslationMainItem';
-import TranslationTranslatedItem from '../../../commons/Translation/TranslationTranslatedItem.tsx/TranslationTranslatedItem';
+import TranslationItem from '../../../commons/TranslationItem/TranslationItem';
 import Box from '../../../designSystem/Box/Box';
 import { HomeStackContext } from '../../../navigation/HomeStack/HomeStack.context';
 import { HomeStackScreenList } from '../../../navigation/HomeStack/HomeStack.types';
@@ -49,18 +47,7 @@ const TranslationScreen = () => {
     <Box flex={1} backgroundColor="primaryBackground">
       <FlashList
         data={data?.main}
-        renderItem={({ item }) => {
-          const { mainItem, translatedItems, lessCommon } = item;
-          return (
-            <Box flex={1} padding="m" marginBottom={lessCommon ? 'none' : 'l'}>
-              <TranslationMainItem {...mainItem} />
-              {translatedItems && <TranslationTranslatedItem {...translatedItems} />}
-              {lessCommon && lessCommon.length > 0 && (
-                <TranslationLessCommonItem {...{ lessCommon }} />
-              )}
-            </Box>
-          );
-        }}
+        renderItem={({ item }) => <TranslationItem {...{ item }} />}
         estimatedItemSize={20}
       />
     </Box>
