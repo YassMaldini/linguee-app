@@ -17,14 +17,14 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "requireFullScreen": true,
-      "bundleIdentifier": "com.ios.lingueeclone",
+      "bundleIdentifier": "com.ios.lingueeClone",
       "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png"
       },
-      "package": "com.android.lingueeclone",
+      "package": "com.android.lingueeClone",
       "versionCode": 1
     },
     "web": {
