@@ -4,7 +4,7 @@
     "slug": "linguee-app",
     "version": "1.0.0",
     "orientation": "default",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/linguee_new_logo.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -17,14 +17,14 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "requireFullScreen": true,
-      "bundleIdentifier": "com.ios.linguee.dev",
+      "bundleIdentifier": "com.ios.lingueeclone",
       "buildNumber": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png"
       },
-      "package": "com.android.linguee.dev",
+      "package": "com.android.lingueeclone",
       "versionCode": 1
     },
     "web": {
