@@ -24,7 +24,7 @@ import {
 } from '../../../../../store/translation/translationReducerSelectors';
 import { darkModeSelector } from '../../../../../store/main/mainReducerSelectors';
 import WhiteLogoIcon from '../../../../../../assets/images/logo_white.png';
-import ColoredLogoIcon from '../../../../../../assets/images/logo_colored.png';
+import ColoredLogoIcon from '../../../../../../assets/images/new_logo_colored.png';
 import SmallWhiteLogoIcon from '../../../../../../assets/images/small_logo_white.png';
 import SmallColoredLogoIcon from '../../../../../../assets/images/small_logo.png';
 import CrossIcon from '../../../../../../assets/images/ic_highlight_remove_grey_800_18dp.png';

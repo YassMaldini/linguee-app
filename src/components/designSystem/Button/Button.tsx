@@ -33,6 +33,7 @@ const Content = ({
   color = ButtonColors.Primary,
   variant = ButtonVariants.Text,
   isBold = true,
+  textProps,
 }: ButtonProps) => {
   const isChildrenString = typeof children === 'string';
 
@@ -55,7 +56,8 @@ const Content = ({
           fontSize={16}
           textAlign="center"
           fontFamily={isBold ? 'Roboto-Bold' : 'Roboto-Regular'}
-          color={buttonTextColor}>
+          color={buttonTextColor}
+          {...textProps}>
           {children}
         </Text>
       )}
@@ -72,6 +74,7 @@ const Button = ({
   variant,
   size = ButtonSizes.Small,
   isBold,
+  textProps,
   ...rest
 }: ButtonProps) => {
   const restyleFunctions = composeRestyleFunctions<Theme, RestyleProps>([
@@ -108,6 +111,7 @@ const Button = ({
           color,
           variant,
           isBold,
+          textProps,
         }}
       />
     </Component>

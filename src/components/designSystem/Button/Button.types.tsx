@@ -8,6 +8,7 @@ import {
 import { ReactNode } from 'react';
 import { PressableProps } from 'react-native';
 import { Theme } from '../../../utils/theme/theme';
+import TextProps from '../Text/Text.types';
 
 export enum ButtonColors {
   Primary = 'primary',
@@ -56,4 +57,5 @@ export interface ButtonProps
   variant?: ButtonVariants;
   size?: ButtonSizes;
   isBold?: boolean;
+  textProps?: TextProps;
 }

@@ -12,13 +12,13 @@ module.exports = {
   apps: {
     'ios.debug': {
       type: 'ios.app',
-      binaryPath: 'ios/build/Build/Products/Debug-iphonesimulator/dev.app',
+      binaryPath: 'ios/build/Build/Products/Debug-iphonesimulator/Linguee.app',
       build:
         'xcodebuild -workspace ios/Linguee.xcworkspace -scheme Linguee -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build',
     },
     'ios.release': {
       type: 'ios.app',
-      binaryPath: 'ios/build/Build/Products/Release-iphonesimulator/dev.app',
+      binaryPath: 'ios/build/Build/Products/Release-iphonesimulator/Linguee.app',
       build:
         'xcodebuild -workspace ios/Linguee.xcworkspace -scheme Linguee -configuration Release -sdk iphonesimulator -derivedDataPath ios/build',
     },

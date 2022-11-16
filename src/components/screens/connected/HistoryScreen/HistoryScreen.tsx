@@ -75,13 +75,25 @@ const HistoryScreen = () => {
   const HeaderActionButtom = useCallback(() => {
     if (areAllRemoveButtonsVisible) {
       return (
-        <Button color={ButtonColors.HighlightedText} onPress={fadeOut} isBold={false}>
+        <Button
+          color={ButtonColors.HighlightedText}
+          onPress={fadeOut}
+          isBold={false}
+          textProps={{
+            fontSize: 18,
+          }}>
           {t('header.button.done')}
         </Button>
       );
     } else {
       return (
-        <Button color={ButtonColors.HighlightedText} onPress={fadeIn} isBold={false}>
+        <Button
+          color={ButtonColors.HighlightedText}
+          onPress={fadeIn}
+          isBold={false}
+          textProps={{
+            fontSize: 18,
+          }}>
           {t('header.button.edit')}
         </Button>
       );

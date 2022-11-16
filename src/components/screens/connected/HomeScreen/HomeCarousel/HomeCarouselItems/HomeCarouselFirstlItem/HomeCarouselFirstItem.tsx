@@ -1,8 +1,8 @@
 import Box from '../../../../../../designSystem/Box/Box';
 import Image from '../../../../../../designSystem/Image/Image';
-import ColoredLogoImage from '../../../../../../../../assets/images/large_logo.png';
+import ColoredLogoImage from '../../../../../../../../assets/images/new_large_logo.png';
 import WhiteLogoImage from '../../../../../../../../assets/images/linguee_logo_weiss_big.png';
-import SwipeImage from '../../../../../../../../assets/images/swipe_left.png';
+import SwipeImage from '../../../../../../../../assets/images/new_swipe_left.png';
 import Text from '../../../../../../designSystem/Text/Text';
 import { useContext, useMemo } from 'react';
 import { HomeStackContext } from '../../../../../../navigation/HomeStack/HomeStack.context';
@@ -15,7 +15,7 @@ const HomeCarouselFirstItem = () => {
   const { t } = useTranslation('carousel', { keyPrefix: 'first' });
   const isDarkMode = useSelector(darkModeSelector);
   const { currentScreenOrientation } = useContext(HomeStackContext);
-  const width = 200;
+  const width = 210;
   const swipeImageWidth = 165;
   const isLandscape = useMemo(() => {
     if (
@@ -35,6 +35,7 @@ const HomeCarouselFirstItem = () => {
           source={isDarkMode ? WhiteLogoImage : ColoredLogoImage}
           width={width}
           height={width / 2.5}
+          resizeMode="contain"
           marginBottom="sToM"
         />
         <Text textAlign="center" fontSize={16}>

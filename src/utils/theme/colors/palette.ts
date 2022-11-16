@@ -1,5 +1,5 @@
 export const PALETTE = Object.freeze({
-  primaryHighlight: '#527091',
+  primaryHighlight: '#79353f',
 
   white: '#fff',
   black: '#000',
@@ -15,7 +15,7 @@ export const PALETTE = Object.freeze({
   gray5: '#262626',
   gray6: '#121212',
 
-  highlightedText: '#527091',
+  highlightedText: '#79353f',
 
   defaultButton: '#0095F6',
 
