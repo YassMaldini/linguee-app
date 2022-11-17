@@ -34,10 +34,7 @@ const HomeScreen = () => {
   );
 
   const CallbackFlashList = useCallback(
-    (props: FlashListProps<any>) => {
-      console.log(currentScreenOrientation);
-      return <FlashList {...props} />;
-    },
+    (props: FlashListProps<any>) => <FlashList {...props} />,
     [currentScreenOrientation]
   );
 

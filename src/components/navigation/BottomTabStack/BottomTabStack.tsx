@@ -40,7 +40,6 @@ const BottomTabStack = () => {
       setCurrentScreenOrientation(orientation);
     })();
     const subscription = addOrientationChangeListener((e) => {
-      console.log('e.orientationInfo.orientation', e.orientationInfo.orientation);
       setCurrentScreenOrientation(e.orientationInfo.orientation);
     });
     return () => removeOrientationChangeListener(subscription);
