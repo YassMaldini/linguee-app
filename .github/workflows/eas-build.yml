@@ -3,7 +3,8 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - development
+      # - development
+      - main
 jobs:
   build:
     name: Install and build
@@ -23,4 +24,5 @@ jobs:
       - name: Install dependencies
         run: npm install --force
       - name: Build on EAS
-        run: eas build --platform android --profile development --non-interactive
+        # run: eas build --platform android --profile development --non-interactive
+        run: eas build --platform android --profile preview --non-interactive
