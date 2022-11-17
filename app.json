@@ -24,7 +24,7 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png"
       },
-      "package": "com.android.lingueeClone",
+      "package": "com.and.lingueeClone",
       "versionCode": 1
     },
     "web": {

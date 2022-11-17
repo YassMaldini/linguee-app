@@ -29,7 +29,7 @@
       "env": {
         "APP_NAME": "Linguee clone (NOT OFFICIAL)",
         "IOS_BUNDLE_ID": "com.ios.lingueeclone",
-        "ANDROID_PACKAGE_NAME": "com.android.lingueeclone"
+        "ANDROID_PACKAGE_NAME": "com.and.lingueeclone"
       }
     }
   },
