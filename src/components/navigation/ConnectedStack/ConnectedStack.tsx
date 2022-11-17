@@ -1,17 +1,17 @@
 import { Platform } from 'react-native';
-import HomeStack from '../HomeStack/HomeStack';
+import BottomTabStack from '../BottomTabStack/BottomTabStack';
 import { Navigator, Screen } from './ConnectedStack.navigator';
 
 const ConnectedStack = () => {
   return (
     <Navigator
-      initialRouteName="HomeStack"
+      initialRouteName="BottomTabStack"
       screenOptions={{
         headerShown: false,
         animation: Platform.OS === 'android' ? 'fade_from_bottom' : 'default',
       }}>
       {/* <Screen name="ConnectedBottomTab" component={ConnectedBottomTab} /> */}
-      <Screen name="HomeStack" component={HomeStack} />
+      <Screen name="BottomTabStack" component={BottomTabStack} />
     </Navigator>
   );
 };

@@ -4,12 +4,12 @@ import { Platform } from 'react-native';
 import { useContext, useMemo, useState } from 'react';
 import { homeCarouselItemsList } from './HomeCarousel.data';
 import { useSafeAreaFrame } from 'react-native-safe-area-context';
-import { HomeStackContext } from '../../../../navigation/HomeStack/HomeStack.context';
+import { BottomTabStackContext } from '../../../../navigation/BottomTabStack/BottomTabStack.context';
 import { isLandscape } from '../../../../../utils/orientation/isLandscape';
 
 const HomeCarousel = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const { currentScreenOrientation } = useContext(HomeStackContext);
+  const { currentScreenOrientation } = useContext(BottomTabStackContext);
   const { width: screenWidth, height: screenHeight } = useSafeAreaFrame();
   const isPortrait = !isLandscape(currentScreenOrientation);
 

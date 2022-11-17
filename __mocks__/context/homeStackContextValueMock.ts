@@ -1,10 +1,13 @@
 import { Orientation } from 'expo-screen-orientation';
-import {
-  HomeStackContextProps,
-  HomeStackScreenList,
-} from '../../src/components/navigation/HomeStack/HomeStack.types';
+import { BottomTabStackContextProps } from '../../src/components/navigation/BottomTabStack/BottomTabStack.types';
+import { HomeStackScreenList } from '../../src/components/navigation/HomeStack/HomeStack.types';
 import { SearchResponse } from '../../src/types/models/search/search.types';
-import { navigationMock, NavigationScreenPropAlias } from '../navigation/navigationMock';
+import {
+  homeStackNavigationMock,
+  HomeStackNavigationScreenPropAlias,
+  navigationMock,
+  NavigationScreenPropAlias,
+} from '../navigation/navigationMock';
 
 const activeScreen = HomeStackScreenList.HomeScreen;
 const setActiveScreen = jest.fn();
@@ -18,7 +21,7 @@ const activeTranslation = undefined;
 const setActiveTranslation = jest.fn();
 const currentScreenOrientation = Orientation.PORTRAIT_UP;
 
-export const homeStackContextValueMock: HomeStackContextProps = {
+export const homeStackContextValueMock: BottomTabStackContextProps = {
   activeScreen,
   setActiveScreen,
   searchResponse,
@@ -31,4 +34,5 @@ export const homeStackContextValueMock: HomeStackContextProps = {
   setActiveTranslation,
   currentScreenOrientation,
   navigation: navigationMock as NavigationScreenPropAlias,
+  homeStackNavigation: homeStackNavigationMock as HomeStackNavigationScreenPropAlias,
 };

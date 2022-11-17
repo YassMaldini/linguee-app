@@ -8,7 +8,7 @@ import InfoIcon from '../../../../assets/vectors/info.svg';
 import SettingsIcon from '../../../../assets/vectors/settings.svg';
 import Pressable from '../../designSystem/Pressable/Pressable';
 import { useCallback, useContext } from 'react';
-import { HomeStackContext } from '../../navigation/HomeStack/HomeStack.context';
+import { BottomTabStackContext } from '../../navigation/BottomTabStack/BottomTabStack.context';
 import { HomeStackScreenList } from '../../navigation/HomeStack/HomeStack.types';
 import { useSelector } from 'react-redux';
 import { savedTranslationsSelector } from '../../../store/translation/translationReducerSelectors';
@@ -21,47 +21,48 @@ const BottomTab = () => {
 
   const {
     navigation,
+    homeStackNavigation,
     activeScreen,
     currentHistoryIndex,
     setCurrentHistoryIndex,
     isSettingsModalVisible,
     setSettingsModalVisible,
     activeTranslation,
-  } = useContext(HomeStackContext);
+  } = useContext(BottomTabStackContext);
 
   const savedTranslations = useSelector(savedTranslationsSelector);
 
   const onPressLeftArrow = useCallback(() => {
     if (activeScreen !== HomeStackScreenList.HistoryTranslationScreen) {
-      navigation.navigate(HomeStackScreenList.HistoryTranslationScreen);
+      homeStackNavigation.navigate(HomeStackScreenList.HistoryTranslationScreen);
     }
     if (currentHistoryIndex > 0) {
       setCurrentHistoryIndex(currentHistoryIndex - 1);
     } else {
       setCurrentHistoryIndex(0);
     }
-  }, [navigation, activeScreen, savedTranslations, currentHistoryIndex]);
+  }, [homeStackNavigation, activeScreen, savedTranslations, currentHistoryIndex]);
 
   const onPressRightArrow = useCallback(() => {
     if (activeScreen !== HomeStackScreenList.HistoryTranslationScreen) {
-      navigation.navigate(HomeStackScreenList.HistoryTranslationScreen);
+      homeStackNavigation.navigate(HomeStackScreenList.HistoryTranslationScreen);
     }
     if (savedTranslations && currentHistoryIndex < savedTranslations?.length - 1) {
       setCurrentHistoryIndex(currentHistoryIndex + 1);
     }
-  }, [navigation, activeScreen, savedTranslations, currentHistoryIndex]);
+  }, [homeStackNavigation, activeScreen, savedTranslations, currentHistoryIndex]);
 
   const onPressHistory = useCallback(() => {
-    navigation.navigate(HomeStackScreenList.HistoryScreen);
+    navigation.navigate('HistoryStack');
   }, [navigation]);
 
   const onPressInfo = useCallback(() => {
     if (activeScreen !== HomeStackScreenList.HomeScreen) {
-      navigation.navigate(HomeStackScreenList.HomeScreen);
+      homeStackNavigation.navigate(HomeStackScreenList.HomeScreen);
     } else {
       if (navigation.canGoBack()) navigation.goBack();
     }
-  }, [navigation, activeScreen]);
+  }, [homeStackNavigation, navigation, activeScreen]);
 
   const onPressShare = useCallback(async () => {
     try {

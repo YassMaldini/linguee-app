@@ -7,14 +7,14 @@ import { savedTranslationsSelector } from '../../../../store/translation/transla
 import TranslationMainItem from '../../../commons/TranslationItem/TranslationMainItem/TranslationMainItem';
 import TranslationTranslatedItem from '../../../commons/TranslationItem/TranslationTranslatedItem.tsx/TranslationTranslatedItem';
 import Box from '../../../designSystem/Box/Box';
-import { HomeStackContext } from '../../../navigation/HomeStack/HomeStack.context';
-import { HomeStackScreenList } from '../../../navigation/HomeStack/HomeStack.types';
+import { BottomTabStackContext } from '../../../navigation/BottomTabStack/BottomTabStack.context';
 import { HistoryTranslationScreenProps } from './HistoryTranslationScreen.types';
 import { useSwipe } from '../../../../hooks/useSwipe/useSwipe';
+import { HomeStackScreenList } from '../../../navigation/HomeStack/HomeStack.types';
 
 const HistoryTranslationScreen = () => {
   const { currentHistoryIndex, setCurrentHistoryIndex, setActiveScreen, setActiveTranslation } =
-    useContext(HomeStackContext);
+    useContext(BottomTabStackContext);
 
   const savedTranslations = useSelector(savedTranslationsSelector);
 

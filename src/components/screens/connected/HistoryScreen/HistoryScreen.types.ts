@@ -2,13 +2,13 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Dispatch } from 'redux';
 import { TranslationResponse } from '../../../../types/models/translation/translation.types';
 import {
-  HomeStackParamsList,
-  HomeStackScreenList,
-} from '../../../navigation/HomeStack/HomeStack.types';
+  HistoryStackParamsList,
+  HistoryStackScreenList,
+} from '../../../navigation/HistoryStack/HistoryStack.types';
 
 export type HistoryScreenProps = NativeStackScreenProps<
-  HomeStackParamsList,
-  HomeStackScreenList.HistoryScreen
+  HistoryStackParamsList,
+  HistoryStackScreenList.HistoryScreen
 >;
 
 export interface RemoveSavedTranslation {

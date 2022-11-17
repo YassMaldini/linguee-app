@@ -16,8 +16,11 @@ import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import { USE_SEARCH_QUERY_KEY } from '../../../../../hooks/useSearch/useSearch';
 import { useSelector } from 'react-redux';
 import { LanguagePairModal } from '../../LanguagePairModal/LanguagePairModal';
-import { HomeStackContext } from '../../../../navigation/HomeStack/HomeStack.context';
-import { HomeStackScreenList } from '../../../../navigation/HomeStack/HomeStack.types';
+import { BottomTabStackContext } from '../../../../navigation/BottomTabStack/BottomTabStack.context';
+import {
+  HomeStackProps,
+  HomeStackScreenList,
+} from '../../../../navigation/HomeStack/HomeStack.types';
 import {
   clipboardEnabledSelector,
   languagePairSelector,
@@ -32,11 +35,13 @@ import Text from '../../../../designSystem/Text/Text';
 import Box from '../../../../designSystem/Box/Box';
 import Image from '../../../../designSystem/Image/Image';
 import TextInput from '../../../../designSystem/TextInput/TextInput';
+import { useNavigation } from '@react-navigation/native';
 
 const SearchHeaderContent = ({ isKeyboardVisible }: SearchHeaderContentProps) => {
   const textInputRef = useRef<RNTextInput>(null);
   const isDarkMode = useSelector(darkModeSelector);
-  const { activeScreen, setSearchResponse, navigation } = useContext(HomeStackContext);
+  const navigation = useNavigation<HomeStackProps['navigation']>();
+  const { activeScreen, setSearchResponse } = useContext(BottomTabStackContext);
   const bottomModalRef = useRef<BottomSheetModal>(null);
   const queryClient = useQueryClient();
   const languagePair = useSelector(languagePairSelector);
@@ -97,7 +102,7 @@ const SearchHeaderContent = ({ isKeyboardVisible }: SearchHeaderContentProps) =>
   };
 
   return (
-    <Box testID="screenHeader" visible={activeScreen !== HomeStackScreenList.HistoryScreen}>
+    <Box testID="screenHeader">
       <Box flexDirection="row" alignItems="center">
         <Box padding="sToM">
           {isKeyboardVisible ? (

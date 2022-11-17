@@ -1,20 +1,19 @@
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { fireEvent } from '@testing-library/react-native';
 import { Orientation } from 'expo-screen-orientation';
 import { useSelector } from 'react-redux';
 import { translationResponseMock } from '../../../../__mocks__/api/translationResponseMock';
 import { SearchResponse } from '../../../types/models/search/search.types';
 import renderInProviders from '../../../utils/test/renderInProviders';
-import { HomeStackContext } from '../../navigation/HomeStack/HomeStack.context';
-import {
-  HomeStackContextProps,
-  HomeStackParamsList,
-  HomeStackScreenList,
-} from '../../navigation/HomeStack/HomeStack.types';
+import { BottomTabStackContext } from '../../navigation/BottomTabStack/BottomTabStack.context';
+import { HomeStackScreenList } from '../../navigation/HomeStack/HomeStack.types';
 import BottomTab from './BottomTab';
 import { Share } from 'react-native';
-
-type NavigationScreenPropAlias = NativeStackNavigationProp<HomeStackParamsList>;
+import { BottomTabStackContextProps } from '../../navigation/BottomTabStack/BottomTabStack.types';
+import { HistoryStackScreenList } from '../../navigation/HistoryStack/HistoryStack.types';
+import {
+  HomeStackNavigationScreenPropAlias,
+  NavigationScreenPropAlias,
+} from '../../../../__mocks__/navigation/navigationMock';
 
 const shareFn = jest.fn();
 
@@ -51,8 +50,18 @@ describe('<BottomTab />', () => {
     getId: jest.fn(),
     getState: jest.fn(),
   };
+  const homeStackNavigation: Partial<HomeStackNavigationScreenPropAlias> = {
+    navigate: jest.fn(),
+    dispatch: jest.fn(),
+    reset: jest.fn(),
+    goBack: jest.fn(),
+    isFocused: jest.fn(),
+    canGoBack: () => true,
+    getId: jest.fn(),
+    getState: jest.fn(),
+  };
 
-  const contextValueMock: HomeStackContextProps = {
+  const contextValueMock: BottomTabStackContextProps = {
     activeScreen,
     setActiveScreen,
     searchResponse,
@@ -65,13 +74,14 @@ describe('<BottomTab />', () => {
     setActiveTranslation,
     currentScreenOrientation,
     navigation: navigation as NavigationScreenPropAlias,
+    homeStackNavigation: homeStackNavigation as HomeStackNavigationScreenPropAlias,
   };
 
   it('should render main element', async () => {
     const { getByTestId } = renderInProviders(
-      <HomeStackContext.Provider value={contextValueMock}>
+      <BottomTabStackContext.Provider value={contextValueMock}>
         <BottomTab />
-      </HomeStackContext.Provider>
+      </BottomTabStackContext.Provider>
     );
 
     expect(await getByTestId('bottomTab')).toBeTruthy();
@@ -79,21 +89,21 @@ describe('<BottomTab />', () => {
 
   it('should navigate to history screen when press history icon', () => {
     const { getByTestId } = renderInProviders(
-      <HomeStackContext.Provider value={contextValueMock}>
+      <BottomTabStackContext.Provider value={contextValueMock}>
         <BottomTab />
-      </HomeStackContext.Provider>
+      </BottomTabStackContext.Provider>
     );
 
     fireEvent.press(getByTestId('historyIcon'));
 
-    expect(navigation.navigate).toHaveBeenCalledWith(HomeStackScreenList.HistoryScreen);
+    expect(navigation.navigate).toHaveBeenCalledWith('HistoryStack');
   });
 
   it('should go back when press info icon AND active screen is home screen AND can go back', () => {
     const { getByTestId } = renderInProviders(
-      <HomeStackContext.Provider value={contextValueMock}>
+      <BottomTabStackContext.Provider value={contextValueMock}>
         <BottomTab />
-      </HomeStackContext.Provider>
+      </BottomTabStackContext.Provider>
     );
 
     fireEvent.press(getByTestId('infoIcon'));
@@ -103,25 +113,25 @@ describe('<BottomTab />', () => {
 
   it('should navigate to home screen when press info icon AND active screen is NOT home screen', () => {
     const { getByTestId } = renderInProviders(
-      <HomeStackContext.Provider
+      <BottomTabStackContext.Provider
         value={{
           ...contextValueMock,
-          activeScreen: HomeStackScreenList.HistoryScreen,
+          activeScreen: HistoryStackScreenList.HistoryScreen,
         }}>
         <BottomTab />
-      </HomeStackContext.Provider>
+      </BottomTabStackContext.Provider>
     );
 
     fireEvent.press(getByTestId('infoIcon'));
 
-    expect(navigation.navigate).toHaveBeenCalledWith(HomeStackScreenList.HomeScreen);
+    expect(homeStackNavigation.navigate).toHaveBeenCalledWith(HomeStackScreenList.HomeScreen);
   });
 
   it('should show/hide settings modal when press settings icon', () => {
     const { getByTestId } = renderInProviders(
-      <HomeStackContext.Provider value={contextValueMock}>
+      <BottomTabStackContext.Provider value={contextValueMock}>
         <BottomTab />
-      </HomeStackContext.Provider>
+      </BottomTabStackContext.Provider>
     );
 
     fireEvent.press(getByTestId('settingsIcon'));
@@ -131,13 +141,13 @@ describe('<BottomTab />', () => {
 
   it('should call share function when press share icon AND has an active translation', () => {
     const { getByTestId } = renderInProviders(
-      <HomeStackContext.Provider
+      <BottomTabStackContext.Provider
         value={{
           ...contextValueMock,
           activeTranslation: translationResponseMock,
         }}>
         <BottomTab />
-      </HomeStackContext.Provider>
+      </BottomTabStackContext.Provider>
     );
 
     fireEvent.press(getByTestId('shareIcon'));

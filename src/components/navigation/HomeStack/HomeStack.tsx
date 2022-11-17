@@ -1,83 +1,14 @@
-import { useNavigation } from '@react-navigation/native';
-import { useEffect, useMemo, useState } from 'react';
-import { SearchResponse } from '../../../types/models/search/search.types';
-import { TranslationResponse } from '../../../types/models/translation/translation.types';
-import BottomTab from '../../commons/BottomTab/BottomTab';
+import { Fragment } from 'react';
 import SearchHeader from '../../commons/Search/SearchHeader/SearchHeader';
-import SettingsModal from '../../commons/SettingsModal/SettingsModal';
-import HistoryScreen from '../../screens/connected/HistoryScreen/HistoryScreen';
 import HistoryTranslationScreen from '../../screens/connected/HistoryTranslationScreen/HistoryTranslationScreen';
 import HomeScreen from '../../screens/connected/HomeScreen/HomeScreen';
 import TranslationScreen from '../../screens/connected/TranslationScreen/TranslationScreen';
-import { HomeStackContext } from './HomeStack.context';
 import { Navigator, Screen } from './HomeStack.navigator';
-import { HomeStackContextProps, HomeStackProps, HomeStackScreenList } from './HomeStack.types';
-import {
-  addOrientationChangeListener,
-  removeOrientationChangeListener,
-  Orientation,
-  getOrientationAsync,
-} from 'expo-screen-orientation';
+import { HomeStackScreenList } from './HomeStack.types';
 
 const HomeStack = () => {
-  const navigation = useNavigation<HomeStackProps['navigation']>();
-
-  const [activeScreen, setActiveScreen] = useState<HomeStackScreenList>(
-    HomeStackScreenList.HomeScreen
-  );
-  const [searchResponse, setSearchResponse] = useState<SearchResponse>();
-  const [currentHistoryIndex, setCurrentHistoryIndex] = useState<number>(0);
-  const [activeTranslation, setActiveTranslation] = useState<TranslationResponse | undefined>();
-  const [isSettingsModalVisible, setSettingsModalVisible] = useState<boolean>(false);
-  const [currentScreenOrientation, setCurrentScreenOrientation] = useState<Orientation>(
-    Orientation.PORTRAIT_UP
-  );
-
-  useEffect(() => {
-    (async () => {
-      const orientation = await getOrientationAsync();
-      setCurrentScreenOrientation(orientation);
-    })();
-    const subscription = addOrientationChangeListener((e) => {
-      console.log('e.orientationInfo.orientation', e.orientationInfo.orientation);
-      setCurrentScreenOrientation(e.orientationInfo.orientation);
-    });
-    return () => removeOrientationChangeListener(subscription);
-  }, []);
-
-  const contextValue = useMemo<HomeStackContextProps>(
-    () => ({
-      activeScreen,
-      setActiveScreen,
-      searchResponse,
-      setSearchResponse,
-      currentHistoryIndex,
-      setCurrentHistoryIndex,
-      isSettingsModalVisible,
-      setSettingsModalVisible,
-      activeTranslation,
-      setActiveTranslation,
-      currentScreenOrientation,
-      navigation,
-    }),
-    [
-      activeScreen,
-      setActiveScreen,
-      searchResponse,
-      setSearchResponse,
-      currentHistoryIndex,
-      setCurrentHistoryIndex,
-      isSettingsModalVisible,
-      setSettingsModalVisible,
-      activeTranslation,
-      setActiveTranslation,
-      currentScreenOrientation,
-      navigation,
-    ]
-  );
-
   return (
-    <HomeStackContext.Provider value={contextValue}>
+    <Fragment>
       <SearchHeader />
       <Navigator
         initialRouteName={HomeStackScreenList.HomeScreen}
@@ -90,11 +21,8 @@ const HomeStack = () => {
           name={HomeStackScreenList.HistoryTranslationScreen}
           component={HistoryTranslationScreen}
         />
-        <Screen name={HomeStackScreenList.HistoryScreen} component={HistoryScreen} />
       </Navigator>
-      <SettingsModal />
-      <BottomTab />
-    </HomeStackContext.Provider>
+    </Fragment>
   );
 };
 
