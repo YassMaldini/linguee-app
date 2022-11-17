@@ -3,7 +3,7 @@ export interface TranslationResponse {
   url: string;
   language: TranslationResponseLanguage;
   main: TranslationResponseMain[];
-  examples: TranslationResponseExample[];
+  examples?: TranslationResponseExample[];
 }
 
 export interface TranslationResponseMain {

@@ -13,7 +13,11 @@ const TranslationMainItem = (item: TranslationResponseMainItem) => {
           color="highlightedText">
           {item.text}
         </Text>
-        {item.context && <Text marginRight="sToM">{item.context}</Text>}
+        {item.context && (
+          <Text marginRight="sToM" lineHeight={22}>
+            {item.context}
+          </Text>
+        )}
         <Text
           testID="translationMainItemWt"
           color="secondaryText"

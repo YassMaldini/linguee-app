@@ -127,7 +127,13 @@ const BottomTab = () => {
         style={{
           position: 'relative',
           bottom: 0.5,
-        }}>
+        }}
+        disabled={
+          !(
+            activeScreen === HomeStackScreenList.TranslationScreen ||
+            activeScreen === HomeStackScreenList.HistoryTranslationScreen
+          )
+        }>
         <SvgIcon
           icon={ExportIcon}
           width={26}

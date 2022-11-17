@@ -127,55 +127,58 @@ export const translationHtmlStringToResponse = (html: string, url: string): Tran
 
   const inexact = root.querySelector('.inexact');
 
-  const inexact_lemma_items = (inexact as HTMLElement).querySelectorAll('.lemma.singleline');
+  if (inexact) {
+    const inexact_lemma_items = (inexact as HTMLElement).querySelectorAll('.lemma.singleline');
 
-  for (const inexact_lemma_item of inexact_lemma_items) {
-    let example_main_item: Partial<TranslationResponseExampleItem> = {};
-    const example_transaltions: TranslationResponseExampleItem[] = [];
+    for (const inexact_lemma_item of inexact_lemma_items) {
+      let example_main_item: Partial<TranslationResponseExampleItem> = {};
+      const example_transaltions: TranslationResponseExampleItem[] = [];
 
-    const example_main_item_element = inexact_lemma_item.querySelector('h2');
-    const example_main_item_text =
-      example_main_item_element?.querySelector('a.dictLink')?.innerText;
-    const example_main_item_url = example_main_item_element
-      ?.querySelector('a.dictLink')
-      ?.getAttribute('href');
-    const example_main_item_type = example_main_item_element?.querySelector('.tag_type')?.innerText;
+      const example_main_item_element = inexact_lemma_item.querySelector('h2');
+      const example_main_item_text =
+        example_main_item_element?.querySelector('a.dictLink')?.innerText;
+      const example_main_item_url = example_main_item_element
+        ?.querySelector('a.dictLink')
+        ?.getAttribute('href');
+      const example_main_item_type =
+        example_main_item_element?.querySelector('.tag_type')?.innerText;
 
-    example_main_item = {
-      text: decodeHTMLEntities(example_main_item_text),
-      url: decodeHTMLEntities(example_main_item_url),
-      type: decodeHTMLEntities(example_main_item_type),
-    };
+      example_main_item = {
+        text: decodeHTMLEntities(example_main_item_text),
+        url: decodeHTMLEntities(example_main_item_url),
+        type: decodeHTMLEntities(example_main_item_type),
+      };
 
-    const translation_lines = inexact_lemma_item.querySelector('.translation_lines');
-    const translation = translation_lines?.querySelectorAll('.translation');
+      const translation_lines = inexact_lemma_item.querySelector('.translation_lines');
+      const translation = translation_lines?.querySelectorAll('.translation');
 
-    if (translation) {
-      for (const translation_line of translation) {
-        const example_main_translation_element =
-          translation_line.querySelector('div.translation_desc');
+      if (translation) {
+        for (const translation_line of translation) {
+          const example_main_translation_element =
+            translation_line.querySelector('div.translation_desc');
 
-        if (example_main_translation_element) {
-          const example_main_translation_text =
-            example_main_translation_element?.querySelector('a.dictLink')?.innerText;
-          const example_main_translation_url = example_main_translation_element
-            ?.querySelector('a.dictLink')
-            ?.getAttribute('href');
-          const example_main_translation_wordtype =
-            example_main_translation_element?.querySelector('.tag_type')?.innerText;
+          if (example_main_translation_element) {
+            const example_main_translation_text =
+              example_main_translation_element?.querySelector('a.dictLink')?.innerText;
+            const example_main_translation_url = example_main_translation_element
+              ?.querySelector('a.dictLink')
+              ?.getAttribute('href');
+            const example_main_translation_wordtype =
+              example_main_translation_element?.querySelector('.tag_type')?.innerText;
 
-          example_transaltions.push({
-            text: decodeHTMLEntities(example_main_translation_text),
-            url: decodeHTMLEntities(example_main_translation_url),
-            type: decodeHTMLEntities(example_main_translation_wordtype),
-          });
+            example_transaltions.push({
+              text: decodeHTMLEntities(example_main_translation_text),
+              url: decodeHTMLEntities(example_main_translation_url),
+              type: decodeHTMLEntities(example_main_translation_wordtype),
+            });
+          }
         }
       }
+      examples_response.push({
+        main: example_main_item as TranslationResponseExampleItem,
+        translations: example_transaltions,
+      });
     }
-    examples_response.push({
-      main: example_main_item as TranslationResponseExampleItem,
-      translations: example_transaltions,
-    });
   }
 
   // End inexact
