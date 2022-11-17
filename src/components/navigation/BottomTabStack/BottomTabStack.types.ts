@@ -3,26 +3,21 @@ import { Dispatch, SetStateAction } from 'react';
 import { Orientation } from 'expo-screen-orientation';
 import { SearchResponse } from '../../../types/models/search/search.types';
 import { TranslationResponse } from '../../../types/models/translation/translation.types';
+import { HomeStackParamsList, HomeStackScreenList } from '../HomeStack/HomeStack.types';
+import { HistoryStackScreenList } from '../HistoryStack/HistoryStack.types';
 
-export type HomeStackParamsList = {
-  [HomeStackScreenList.HomeScreen]: undefined;
-  [HomeStackScreenList.TranslationScreen]: { url: string; wt?: number };
-  [HomeStackScreenList.HistoryTranslationScreen]: undefined;
+export type BottomTabStackParamsList = {
+  HomeStack: undefined;
+  HistoryStack: undefined;
 };
 
-export enum HomeStackScreenList {
-  HomeScreen = 'HomeScreen',
-  TranslationScreen = 'TranslationScreen',
-  HistoryTranslationScreen = 'HistoryTranslationScreen',
-}
+export type BottomTabStackProps = NativeStackScreenProps<BottomTabStackParamsList>;
 
-export type HomeStackProps = NativeStackScreenProps<HomeStackParamsList, HomeStackScreenList>;
-
-export interface HomeStackContextProps {
+export interface BottomTabStackContextProps {
   searchResponse?: SearchResponse;
   setSearchResponse: Dispatch<SetStateAction<SearchResponse | undefined>>;
-  activeScreen: HomeStackScreenList;
-  setActiveScreen: Dispatch<SetStateAction<HomeStackScreenList>>;
+  activeScreen: HomeStackScreenList | HistoryStackScreenList;
+  setActiveScreen: Dispatch<SetStateAction<HomeStackScreenList | HistoryStackScreenList>>;
   currentHistoryIndex: number;
   setCurrentHistoryIndex: Dispatch<SetStateAction<number>>;
   activeTranslation: TranslationResponse | undefined;
@@ -30,5 +25,6 @@ export interface HomeStackContextProps {
   isSettingsModalVisible: boolean;
   setSettingsModalVisible: Dispatch<SetStateAction<boolean>>;
   currentScreenOrientation: Orientation;
-  navigation: NativeStackNavigationProp<HomeStackParamsList>;
+  navigation: NativeStackNavigationProp<BottomTabStackParamsList>;
+  homeStackNavigation: NativeStackNavigationProp<HomeStackParamsList>;
 }

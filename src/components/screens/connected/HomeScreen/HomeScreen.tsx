@@ -3,14 +3,14 @@ import Box from '../../../designSystem/Box/Box';
 import SearchItem from '../../../commons/Search/SearchItem/SearchItem';
 import { SearchResponseObject } from '../../../../types/models/search/search.types';
 import { FlashList, FlashListProps, ListRenderItem } from '@shopify/flash-list';
-import { HomeStackContext } from '../../../navigation/HomeStack/HomeStack.context';
+import { BottomTabStackContext } from '../../../navigation/BottomTabStack/BottomTabStack.context';
 import { useNavigation } from '@react-navigation/native';
 import { TranslationScreenProps } from '../TranslationScreen/TranslationScreen.types';
 import { HomeStackScreenList } from '../../../navigation/HomeStack/HomeStack.types';
 import HomeCarousel from './HomeCarousel/HomeCarousel';
 
 const HomeScreen = () => {
-  const { setActiveScreen, currentScreenOrientation } = useContext(HomeStackContext);
+  const { setActiveScreen, currentScreenOrientation } = useContext(BottomTabStackContext);
   const navigation = useNavigation<TranslationScreenProps['navigation']>();
 
   useEffect(
@@ -26,9 +26,7 @@ const HomeScreen = () => {
     return unsubscribe;
   }, [navigation]);
 
-  const { searchResponse } = useContext(HomeStackContext);
-
-  useEffect(() => console.log('searchResponse', searchResponse), [searchResponse]);
+  const { searchResponse } = useContext(BottomTabStackContext);
 
   const renderItem = useCallback<ListRenderItem<SearchResponseObject>>(
     ({ item }) => <SearchItem {...item} />,
@@ -44,7 +42,7 @@ const HomeScreen = () => {
   );
 
   return (
-    <Box testID="home" flex={1} backgroundColor="defaultButton">
+    <Box testID="home" flex={1}>
       <CallbackFlashList
         data={searchResponse}
         {...{ renderItem }}

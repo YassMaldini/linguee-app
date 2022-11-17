@@ -7,7 +7,7 @@ import { render } from '@testing-library/react-native';
 import { ReactNode } from 'react';
 import getTheme from '../theme/theme';
 import configureStore from '../../store/configureStore';
-import { HomeStackContext } from '../../components/navigation/HomeStack/HomeStack.context';
+import { BottomTabStackContext } from '../../components/navigation/BottomTabStack/BottomTabStack.context';
 import { homeStackContextValueMock } from '../../../__mocks__/context/homeStackContextValueMock';
 
 const { store, persistor } = configureStore();
@@ -26,9 +26,9 @@ const renderInProviders = (
           <QueryClientProvider client={queryClient}>
             <ThemeProvider theme={getTheme()}>
               <BottomSheetModalProvider>
-                <HomeStackContext.Provider value={homeStackContextValueMock}>
+                <BottomTabStackContext.Provider value={homeStackContextValueMock}>
                   {children}
-                </HomeStackContext.Provider>
+                </BottomTabStackContext.Provider>
               </BottomSheetModalProvider>
             </ThemeProvider>
           </QueryClientProvider>

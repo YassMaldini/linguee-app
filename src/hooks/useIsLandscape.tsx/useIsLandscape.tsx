@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { Orientation } from 'expo-screen-orientation';
-import { HomeStackContext } from '../../components/navigation/HomeStack/HomeStack.context';
+import { BottomTabStackContext } from '../../components/navigation/BottomTabStack/BottomTabStack.context';
 
 export const useIsLandscape = () => {
-  const { currentScreenOrientation } = useContext(HomeStackContext);
+  const { currentScreenOrientation } = useContext(BottomTabStackContext);
 
   if (
     currentScreenOrientation === Orientation.LANDSCAPE_LEFT ||

@@ -9,7 +9,7 @@ import { setCliboardEnabled } from '../../../store/translation/translation/trans
 import { clipboardEnabledSelector } from '../../../store/translation/translationReducerSelectors';
 import { isLandscape } from '../../../utils/orientation/isLandscape';
 import Box from '../../designSystem/Box/Box';
-import { HomeStackContext } from '../../navigation/HomeStack/HomeStack.context';
+import { BottomTabStackContext } from '../../navigation/BottomTabStack/BottomTabStack.context';
 import SettingsModalItem from './SettingsModalItem/SettingsModalItem';
 import SettingsModalTitle from './SettingsModalTitle/SettingsModalTitle';
 
@@ -17,7 +17,7 @@ const SettingsModal = () => {
   const { t } = useTranslation('settings', { keyPrefix: 'modal.settings' });
   const dispatch = useDispatch();
   const { isSettingsModalVisible, setSettingsModalVisible, currentScreenOrientation } =
-    useContext(HomeStackContext);
+    useContext(BottomTabStackContext);
   const isDarkMode = useSelector(darkModeSelector);
   const isCliboardEnabled = useSelector(clipboardEnabledSelector);
   const clipboardSwitch = () => setCliboardEnabled(!isCliboardEnabled)(dispatch);

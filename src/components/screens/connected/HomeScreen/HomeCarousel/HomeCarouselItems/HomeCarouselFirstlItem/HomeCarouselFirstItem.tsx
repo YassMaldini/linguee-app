@@ -5,7 +5,7 @@ import WhiteLogoImage from '../../../../../../../../assets/images/linguee_logo_w
 import SwipeImage from '../../../../../../../../assets/images/new_swipe_left.png';
 import Text from '../../../../../../designSystem/Text/Text';
 import { useContext, useMemo } from 'react';
-import { HomeStackContext } from '../../../../../../navigation/HomeStack/HomeStack.context';
+import { BottomTabStackContext } from '../../../../../../navigation/BottomTabStack/BottomTabStack.context';
 import { Orientation } from 'expo-screen-orientation';
 import { useSelector } from 'react-redux';
 import { darkModeSelector } from '../../../../../../../store/main/mainReducerSelectors';
@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 const HomeCarouselFirstItem = () => {
   const { t } = useTranslation('carousel', { keyPrefix: 'first' });
   const isDarkMode = useSelector(darkModeSelector);
-  const { currentScreenOrientation } = useContext(HomeStackContext);
+  const { currentScreenOrientation } = useContext(BottomTabStackContext);
   const width = 210;
   const swipeImageWidth = 165;
   const isLandscape = useMemo(() => {

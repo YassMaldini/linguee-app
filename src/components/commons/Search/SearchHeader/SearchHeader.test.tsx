@@ -2,7 +2,7 @@ import { fireEvent } from '@testing-library/react-native';
 import { useMutation } from 'react-query';
 import { homeStackContextValueMock } from '../../../../../__mocks__/context/homeStackContextValueMock';
 import renderInProviders from '../../../../utils/test/renderInProviders';
-import { HomeStackContext } from '../../../navigation/HomeStack/HomeStack.context';
+import { BottomTabStackContext } from '../../../navigation/BottomTabStack/BottomTabStack.context';
 import SearchHeader from './SearchHeader';
 import SearchHeaderContent from './SearchHeaderContent/SearchHeaderContent';
 
@@ -21,9 +21,9 @@ describe('<SearchHeader />', () => {
 
   it('should render main item', () => {
     const { getByTestId } = renderInProviders(
-      <HomeStackContext.Provider value={homeStackContextValueMock}>
+      <BottomTabStackContext.Provider value={homeStackContextValueMock}>
         <SearchHeader />
-      </HomeStackContext.Provider>
+      </BottomTabStackContext.Provider>
     );
 
     expect(getByTestId('screenHeader')).toBeTruthy();
@@ -32,9 +32,9 @@ describe('<SearchHeader />', () => {
   describe('<SearchHeaderContent />', () => {
     it('should render full logo icon when keyboard is closed', () => {
       const { getByTestId } = renderInProviders(
-        <HomeStackContext.Provider value={homeStackContextValueMock}>
+        <BottomTabStackContext.Provider value={homeStackContextValueMock}>
           <SearchHeaderContent isKeyboardVisible={false} />
-        </HomeStackContext.Provider>
+        </BottomTabStackContext.Provider>
       );
 
       expect(getByTestId('fullLogoIcon')).toBeTruthy();
@@ -42,9 +42,9 @@ describe('<SearchHeader />', () => {
 
     it('should render short logo icon when keyboard is opened', () => {
       const { getByTestId } = renderInProviders(
-        <HomeStackContext.Provider value={homeStackContextValueMock}>
+        <BottomTabStackContext.Provider value={homeStackContextValueMock}>
           <SearchHeaderContent isKeyboardVisible={true} />
-        </HomeStackContext.Provider>
+        </BottomTabStackContext.Provider>
       );
 
       expect(getByTestId('shortLogoIcon')).toBeTruthy();
@@ -52,9 +52,9 @@ describe('<SearchHeader />', () => {
 
     it('should call mutation when input text change', () => {
       const { getByTestId } = renderInProviders(
-        <HomeStackContext.Provider value={homeStackContextValueMock}>
+        <BottomTabStackContext.Provider value={homeStackContextValueMock}>
           <SearchHeaderContent isKeyboardVisible={true} />
-        </HomeStackContext.Provider>
+        </BottomTabStackContext.Provider>
       );
 
       const newSearchText = 'test';
@@ -67,9 +67,9 @@ describe('<SearchHeader />', () => {
 
     it('should render language picker button', () => {
       const { getByTestId } = renderInProviders(
-        <HomeStackContext.Provider value={homeStackContextValueMock}>
+        <BottomTabStackContext.Provider value={homeStackContextValueMock}>
           <SearchHeaderContent isKeyboardVisible={true} />
-        </HomeStackContext.Provider>
+        </BottomTabStackContext.Provider>
       );
 
       expect(getByTestId('languagePicker')).toBeTruthy();
@@ -83,9 +83,9 @@ describe('<SearchHeader />', () => {
       }));
 
       const { getByTestId } = renderInProviders(
-        <HomeStackContext.Provider value={homeStackContextValueMock}>
+        <BottomTabStackContext.Provider value={homeStackContextValueMock}>
           <SearchHeaderContent isKeyboardVisible={true} />
-        </HomeStackContext.Provider>
+        </BottomTabStackContext.Provider>
       );
 
       expect(getByTestId('loader')).toBeTruthy();
@@ -101,9 +101,9 @@ describe('<SearchHeader />', () => {
       }));
 
       const { getByTestId, getByText } = renderInProviders(
-        <HomeStackContext.Provider value={homeStackContextValueMock}>
+        <BottomTabStackContext.Provider value={homeStackContextValueMock}>
           <SearchHeaderContent isKeyboardVisible={true} />
-        </HomeStackContext.Provider>
+        </BottomTabStackContext.Provider>
       );
 
       expect(getByTestId('errorText')).toBeTruthy();

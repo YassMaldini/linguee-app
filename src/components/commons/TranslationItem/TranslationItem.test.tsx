@@ -2,7 +2,7 @@ import { translationResponseMock } from '../../../../__mocks__/api/translationRe
 import { homeStackContextValueMock } from '../../../../__mocks__/context/homeStackContextValueMock';
 import { TranslationTranslatedItemMain } from '../../../types/models/translation/translation.types';
 import renderInProviders from '../../../utils/test/renderInProviders';
-import { HomeStackContext } from '../../navigation/HomeStack/HomeStack.context';
+import { BottomTabStackContext } from '../../navigation/BottomTabStack/BottomTabStack.context';
 import TranslationItem from './TranslationItem';
 import TranslationLessCommonItem from './TranslationLessCommonItem/TranslationLessCommonItem';
 import TranslationMainItem from './TranslationMainItem/TranslationMainItem';
@@ -11,9 +11,9 @@ import TranslationTranslatedItem from './TranslationTranslatedItem.tsx/Translati
 describe('<TranslationItem />', () => {
   it('should render translation item', () => {
     const { getByTestId } = renderInProviders(
-      <HomeStackContext.Provider value={homeStackContextValueMock}>
+      <BottomTabStackContext.Provider value={homeStackContextValueMock}>
         <TranslationItem item={translationResponseMock.main[0]} />
-      </HomeStackContext.Provider>
+      </BottomTabStackContext.Provider>
     );
 
     expect(getByTestId('translationItem')).toBeTruthy();
@@ -21,9 +21,9 @@ describe('<TranslationItem />', () => {
 
   it('should render translation main item', () => {
     const { getByTestId } = renderInProviders(
-      <HomeStackContext.Provider value={homeStackContextValueMock}>
+      <BottomTabStackContext.Provider value={homeStackContextValueMock}>
         <TranslationItem item={translationResponseMock.main[0]} />
-      </HomeStackContext.Provider>
+      </BottomTabStackContext.Provider>
     );
 
     expect(getByTestId('translationItem')).toBeTruthy();
@@ -31,9 +31,9 @@ describe('<TranslationItem />', () => {
 
   it('should render translation translated item', () => {
     const { getByTestId } = renderInProviders(
-      <HomeStackContext.Provider value={homeStackContextValueMock}>
+      <BottomTabStackContext.Provider value={homeStackContextValueMock}>
         <TranslationItem item={translationResponseMock.main[0]} />
-      </HomeStackContext.Provider>
+      </BottomTabStackContext.Provider>
     );
 
     expect(getByTestId('translationTranslatedItem')).toBeTruthy();
@@ -41,9 +41,9 @@ describe('<TranslationItem />', () => {
 
   it('should render translation less common item', () => {
     const { getByTestId } = renderInProviders(
-      <HomeStackContext.Provider value={homeStackContextValueMock}>
+      <BottomTabStackContext.Provider value={homeStackContextValueMock}>
         <TranslationItem item={translationResponseMock.main[0]} />
-      </HomeStackContext.Provider>
+      </BottomTabStackContext.Provider>
     );
 
     expect(getByTestId('translationLessCommonItem')).toBeTruthy();

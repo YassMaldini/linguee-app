@@ -16,20 +16,22 @@ import { useCallback, useContext, useEffect, useState } from 'react';
 import { ButtonColors } from '../../../designSystem/Button/Button.types';
 import { useDispatch } from 'react-redux';
 import { removeSavedTranslation } from './HistoryScreen.actions';
-import { HomeStackContext } from '../../../navigation/HomeStack/HomeStack.context';
+import { BottomTabStackContext } from '../../../navigation/BottomTabStack/BottomTabStack.context';
 import { HomeStackScreenList } from '../../../navigation/HomeStack/HomeStack.types';
 import { useTranslation } from 'react-i18next';
+import { HistoryStackScreenList } from '../../../navigation/HistoryStack/HistoryStack.types';
 
 const HistoryScreen = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation('translations', { keyPrefix: 'history' });
   const navigation = useNavigation<HistoryScreenProps['navigation']>();
 
-  const { setCurrentHistoryIndex, setActiveScreen } = useContext(HomeStackContext);
+  const { setCurrentHistoryIndex, setActiveScreen, homeStackNavigation } =
+    useContext(BottomTabStackContext);
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
-      setActiveScreen(HomeStackScreenList.HistoryScreen);
+      setActiveScreen(HistoryStackScreenList.HistoryScreen);
     });
 
     return unsubscribe;
@@ -103,9 +105,9 @@ const HistoryScreen = () => {
   const navigateToTranslation = useCallback(
     (index: number) => {
       setCurrentHistoryIndex(index);
-      navigation.navigate(HomeStackScreenList.HistoryTranslationScreen);
+      homeStackNavigation.navigate(HomeStackScreenList.HistoryTranslationScreen);
     },
-    [navigation, setCurrentHistoryIndex]
+    [homeStackNavigation, setCurrentHistoryIndex]
   );
 
   const renderItem = useCallback(

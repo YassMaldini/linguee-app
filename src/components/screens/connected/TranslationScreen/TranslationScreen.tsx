@@ -8,14 +8,14 @@ import { saveTranslation } from '../../../../store/translation/translation/trans
 import { savedTranslationsSelector } from '../../../../store/translation/translationReducerSelectors';
 import TranslationItem from '../../../commons/TranslationItem/TranslationItem';
 import Box from '../../../designSystem/Box/Box';
-import { HomeStackContext } from '../../../navigation/HomeStack/HomeStack.context';
+import { BottomTabStackContext } from '../../../navigation/BottomTabStack/BottomTabStack.context';
 import { HomeStackScreenList } from '../../../navigation/HomeStack/HomeStack.types';
 import { TranslationScreenProps } from './TranslationScreen.types';
 
 const TranslationScreen = () => {
   const dispatch = useDispatch();
 
-  const { setActiveScreen, setActiveTranslation } = useContext(HomeStackContext);
+  const { setActiveScreen, setActiveTranslation } = useContext(BottomTabStackContext);
   const navigation = useNavigation<TranslationScreenProps['navigation']>();
 
   const savedTranslations = useSelector(savedTranslationsSelector);
