@@ -11,6 +11,8 @@ import { BottomTabStackContext } from '../../../navigation/BottomTabStack/Bottom
 import { HistoryTranslationScreenProps } from './HistoryTranslationScreen.types';
 import { useSwipe } from '../../../../hooks/useSwipe/useSwipe';
 import { HomeStackScreenList } from '../../../navigation/HomeStack/HomeStack.types';
+import TranslationExamples from '../../../commons/TranslationExamples/TranslationExamples';
+import Text from '../../../designSystem/Text/Text';
 
 const HistoryTranslationScreen = () => {
   const { currentHistoryIndex, setCurrentHistoryIndex, setActiveScreen, setActiveTranslation } =
@@ -62,6 +64,16 @@ const HistoryTranslationScreen = () => {
             </Box>
           );
         }}
+        ListFooterComponent={
+          <Box>
+            {currentTranslation?.examples && currentTranslation.examples.length > 0 && (
+              <TranslationExamples examples={currentTranslation.examples} />
+            )}
+            <Text marginTop="s" textAlign="right" color="secondaryText">
+              © Linguee Dictionary, 2022
+            </Text>
+          </Box>
+        }
         ListEmptyComponent={<ActivityIndicator size="large" />}
         estimatedItemSize={20}
         onTouchStart={onTouchStart}
