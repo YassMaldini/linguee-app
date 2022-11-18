@@ -60,7 +60,9 @@ const HistoryTranslationScreen = () => {
           return (
             <Box flex={1} padding="m">
               <TranslationMainItem {...item.mainItem} />
-              {item.translatedItems && <TranslationTranslatedItem {...item.translatedItems} />}
+              {item.translatedItems && item.translatedItems.length > 0 && (
+                <TranslationTranslatedItem translatedItems={item.translatedItems} />
+              )}
             </Box>
           );
         }}
