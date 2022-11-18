@@ -34,4 +34,4 @@ jobs:
         run: npm install
 
       - name: 🚀 Submit build
-        run: eas submit
+        run: eas submit -p all --latest --non-interactive
