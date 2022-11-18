@@ -10,6 +10,7 @@ import {
   removeOrientationChangeListener,
   Orientation,
   getOrientationAsync,
+  unlockAsync,
 } from 'expo-screen-orientation';
 import { BottomTabStackContextProps, BottomTabStackProps } from './BottomTabStack.types';
 import { Platform } from 'react-native';
@@ -36,6 +37,7 @@ const BottomTabStack = () => {
 
   useEffect(() => {
     (async () => {
+      unlockAsync();
       const orientation = await getOrientationAsync();
       setCurrentScreenOrientation(orientation);
     })();

@@ -3,8 +3,8 @@
     "name": "Linguee",
     "slug": "linguee-app",
     "version": "1.0.0",
-    "orientation": "default",
     "icon": "./assets/linguee_new_logo.png",
+    "orientation": "default",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -44,6 +44,12 @@
             "targetSdkVersion": 31,
             "buildToolsVersion": "31.0.0"
           }
+        }
+      ],
+      [
+        "expo-screen-orientation",
+        {
+          "initialOrientation": "ALL"
         }
       ],
       ["@config-plugins/detox"]
