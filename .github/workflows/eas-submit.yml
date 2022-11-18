@@ -1,4 +1,4 @@
-name: Publish preview
+name: EAS Submit
 
 on:
   push:
@@ -32,12 +32,5 @@ jobs:
       - name: 📦 Install dependencies
         run: npm install
 
-      - name: 🚀 Publish preview
-        run: expo publish --release-channel=production
-
-      - name: 👷 Create preview comment
-        uses: expo/expo-github-action/preview-comment@v7
-        id: preview
-        with:
-          comment: false
-          channel: production
+      - name: 🚀 Submit build
+        run: eas submit
