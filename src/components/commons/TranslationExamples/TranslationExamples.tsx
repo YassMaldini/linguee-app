@@ -4,7 +4,7 @@ import { TranslationExamplesProps } from './TranslationExamples.types';
 
 const TranslationExamples = ({ examples }: TranslationExamplesProps) => {
   return (
-    <Box marginTop="m">
+    <Box>
       <Text fontSize={16} marginBottom="s" fontFamily="Roboto-Italic">
         Examples :
       </Text>

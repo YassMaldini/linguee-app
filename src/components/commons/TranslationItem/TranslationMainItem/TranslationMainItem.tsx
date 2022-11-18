@@ -4,7 +4,7 @@ import Text from '../../../designSystem/Text/Text';
 
 const TranslationMainItem = (item: TranslationResponseMainItem) => {
   return (
-    <Box testID="translationMainItem" marginBottom="s">
+    <Box testID="translationMainItem">
       <Box flexDirection="row" alignItems="flex-end">
         <Text
           testID="translationMainItemText"

@@ -8,14 +8,11 @@ const TranslationItem = ({ item }: TranslationItemProps) => {
   const { mainItem, translatedItems, lessCommon } = item;
 
   return (
-    <Box
-      testID="translationItem"
-      flex={1}
-      paddingBottom="m"
-      paddingTop="none"
-      marginBottom={lessCommon ? 'none' : 'l'}>
+    <Box testID="translationItem" flex={1} paddingBottom="l" paddingTop="none" marginBottom="m">
       <TranslationMainItem {...mainItem} />
-      {translatedItems && <TranslationTranslatedItem {...translatedItems} />}
+      {translatedItems && translatedItems.length > 0 && (
+        <TranslationTranslatedItem {...{ translatedItems }} />
+      )}
       {lessCommon && lessCommon.length > 0 && <TranslationLessCommonItem {...{ lessCommon }} />}
     </Box>
   );
