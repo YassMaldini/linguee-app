@@ -14,7 +14,7 @@ const SearchHeader = () => {
       }}
       alwaysVisible
       avoidKeyboard
-      androidAdjustResize>
+      adjustResize>
       {({ isKeyboardVisible }) => {
         return <SearchHeaderContent {...{ isKeyboardVisible }} />;
       }}
