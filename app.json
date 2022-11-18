@@ -19,7 +19,7 @@
     "ios": {
       "requireFullScreen": true,
       "bundleIdentifier": "com.ios.lingueeclone",
-      "buildNumber": "1.1.0"
+      "buildNumber": "2"
     },
     "android": {
       "adaptiveIcon": {
