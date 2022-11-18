@@ -12,6 +12,10 @@ jobs:
     steps:
       - name: 🏗 Setup repo
         uses: actions/checkout@v2
+        with:
+          repository: YassMaldini/linguee-app
+          token: ${{ secrets.PAT }}
+          ref: main
 
       - name: 🏗 Setup Node
         uses: actions/setup-node@v2
