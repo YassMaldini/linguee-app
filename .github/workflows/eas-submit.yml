@@ -34,33 +34,7 @@ jobs:
         run: npm install
 
       - name: 🚀 Create build
-      inputs:
-        platform:
-          description: 'platform'
-          required: true
-        profile:
-          description: 'Build profile from eas.json'
-          required: true
-        projectRoot:
-          description: 'Relative path to root of the EAS project'
-          required: true
-        expoToken:
-          description: 'Expo token'
-          required: true
-        resourceClass:
-          description: 'EAS instance resource class'
-          required: true
-        noWait:
-          description: 'Exit immediately after build is scheduled'
-          required: false
-        message:
-          description: 'Message attached to the build'
-          required: false
-
-        run: eas build --platform ios --profile production
-        with:
-          platform: 'ios'
-          expoToken: ${{ secrets.EXPO_TOKEN }}
+        run: eas build --platform ios --profile production --non-interactive
 
       - name: 🚀 Submit build
         run: eas submit -p ios --latest --non-interactive
