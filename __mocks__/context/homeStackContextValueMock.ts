@@ -13,6 +13,8 @@ const activeScreen = HomeStackScreenList.HomeScreen;
 const setActiveScreen = jest.fn();
 const searchResponse: SearchResponse = [];
 const setSearchResponse = jest.fn();
+const selectedWord = undefined;
+const setSelectedWord = jest.fn();
 const currentHistoryIndex = 0;
 const setCurrentHistoryIndex = jest.fn();
 const isSettingsModalVisible = false;
@@ -26,6 +28,8 @@ export const homeStackContextValueMock: BottomTabStackContextProps = {
   setActiveScreen,
   searchResponse,
   setSearchResponse,
+  selectedWord,
+  setSelectedWord,
   currentHistoryIndex,
   setCurrentHistoryIndex,
   isSettingsModalVisible,
