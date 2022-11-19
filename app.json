@@ -2,7 +2,7 @@
   "expo": {
     "name": "Linguee",
     "slug": "linguee-app",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "runtimeVersion": "1.1.0",
     "icon": "./assets/linguee_new_logo.png",
     "orientation": "default",
@@ -19,7 +19,7 @@
     "ios": {
       "requireFullScreen": true,
       "bundleIdentifier": "com.ios.lingueeclone",
-      "buildNumber": "2"
+      "buildNumber": "3"
     },
     "android": {
       "adaptiveIcon": {
