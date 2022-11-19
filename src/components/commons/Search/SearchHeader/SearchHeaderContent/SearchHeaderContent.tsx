@@ -41,7 +41,7 @@ const SearchHeaderContent = ({ isKeyboardVisible }: SearchHeaderContentProps) =>
   const textInputRef = useRef<RNTextInput>(null);
   const isDarkMode = useSelector(darkModeSelector);
   const navigation = useNavigation<HomeStackProps['navigation']>();
-  const { activeScreen, setSearchResponse } = useContext(BottomTabStackContext);
+  const { activeScreen, setSearchResponse, selectedWord } = useContext(BottomTabStackContext);
   const bottomModalRef = useRef<BottomSheetModal>(null);
   const queryClient = useQueryClient();
   const languagePair = useSelector(languagePairSelector);
@@ -66,6 +66,12 @@ const SearchHeaderContent = ({ isKeyboardVisible }: SearchHeaderContentProps) =>
       })();
     }
   }, [isCliboardEnabled]);
+
+  useEffect(() => {
+    if (selectedWord) {
+      setValue('search', selectedWord);
+    }
+  }, [selectedWord]);
 
   const {
     mutate,

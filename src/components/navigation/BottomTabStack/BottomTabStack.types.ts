@@ -16,6 +16,8 @@ export type BottomTabStackProps = NativeStackScreenProps<BottomTabStackParamsLis
 export interface BottomTabStackContextProps {
   searchResponse?: SearchResponse;
   setSearchResponse: Dispatch<SetStateAction<SearchResponse | undefined>>;
+  selectedWord?: string;
+  setSelectedWord: Dispatch<SetStateAction<string | undefined>>;
   activeScreen: HomeStackScreenList | HistoryStackScreenList;
   setActiveScreen: Dispatch<SetStateAction<HomeStackScreenList | HistoryStackScreenList>>;
   currentHistoryIndex: number;

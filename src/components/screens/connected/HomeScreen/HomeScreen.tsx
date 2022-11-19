@@ -13,11 +13,6 @@ const HomeScreen = () => {
   const { setActiveScreen, currentScreenOrientation } = useContext(BottomTabStackContext);
   const navigation = useNavigation<TranslationScreenProps['navigation']>();
 
-  useEffect(
-    () => console.log('currentScreenOrientation', currentScreenOrientation),
-    [currentScreenOrientation]
-  );
-
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       setActiveScreen(HomeStackScreenList.HomeScreen);

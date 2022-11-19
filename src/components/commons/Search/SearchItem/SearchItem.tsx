@@ -1,21 +1,26 @@
 import { useNavigation } from '@react-navigation/native';
+import { useContext } from 'react';
 import { SearchResponseObject } from '../../../../types/models/search/search.types';
 import Box from '../../../designSystem/Box/Box';
 import Chip from '../../../designSystem/Chip/Chip';
 import { ChipColors } from '../../../designSystem/Chip/Chip.types';
 import Pressable from '../../../designSystem/Pressable/Pressable';
 import Text from '../../../designSystem/Text/Text';
+import { BottomTabStackContext } from '../../../navigation/BottomTabStack/BottomTabStack.context';
 import { HomeStackScreenList } from '../../../navigation/HomeStack/HomeStack.types';
 import { HomeScreenProps } from '../../../screens/connected/HomeScreen/HomeScreen.types';
 
 const SearchItem = (item: SearchResponseObject) => {
   const { navigate } = useNavigation<HomeScreenProps['navigation']>();
+  const { setSelectedWord } = useContext(BottomTabStackContext);
+
   return (
     <Pressable
       testID="searchItem"
       backgroundColor="primaryBackground"
       paddingHorizontal="m"
       onPress={() => {
+        setSelectedWord(item.mainItem.text);
         navigate(HomeStackScreenList.TranslationScreen, {
           url: item.mainItem.href,
           wt: item.mainItem.wt,

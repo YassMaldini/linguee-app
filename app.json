@@ -3,7 +3,7 @@
     "name": "Linguee",
     "slug": "linguee-app",
     "version": "1.1.0",
-    "runtimeVersion": "1.0.1",
+    "runtimeVersion": "1.1.0",
     "icon": "./assets/linguee_new_logo.png",
     "orientation": "default",
     "userInterfaceStyle": "light",

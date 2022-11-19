@@ -28,6 +28,7 @@ const BottomTabStack = () => {
     HomeStackScreenList.HomeScreen
   );
   const [searchResponse, setSearchResponse] = useState<SearchResponse>();
+  const [selectedWord, setSelectedWord] = useState<string | undefined>();
   const [currentHistoryIndex, setCurrentHistoryIndex] = useState<number>(0);
   const [activeTranslation, setActiveTranslation] = useState<TranslationResponse | undefined>();
   const [isSettingsModalVisible, setSettingsModalVisible] = useState<boolean>(false);
@@ -53,6 +54,8 @@ const BottomTabStack = () => {
       setActiveScreen,
       searchResponse,
       setSearchResponse,
+      selectedWord,
+      setSelectedWord,
       currentHistoryIndex,
       setCurrentHistoryIndex,
       isSettingsModalVisible,
@@ -68,6 +71,8 @@ const BottomTabStack = () => {
       setActiveScreen,
       searchResponse,
       setSearchResponse,
+      selectedWord,
+      setSelectedWord,
       currentHistoryIndex,
       setCurrentHistoryIndex,
       isSettingsModalVisible,
